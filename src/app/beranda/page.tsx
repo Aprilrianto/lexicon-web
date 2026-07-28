@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { Play, ArrowRight, Mail, Search, Star, Bookmark, ShoppingBag, Headphones } from "lucide-react";
 import { AnimatedRoadmap } from "@/components/ui/animated-roadmap";
+import TestimonialsSection from "@/components/ui/testimonials-2";
 
 const milestonesData = [
   {
@@ -689,7 +690,7 @@ export default function BerandaPage() {
       </section>
 
       {/* 3.5 Peta Perjalanan Membaca (Animated Roadmap Map) */}
-      <section className="w-full max-w-6xl mx-auto px-6 mb-32 text-center">
+      <section className="w-full max-w-6xl mx-auto px-6 mb-24 text-center">
         <div className="mb-4">
           <h2 className="font-editorial text-4xl md:text-5xl font-bold mb-4 text-[#3D2B1F]">
             Peta Perjalanan Membaca
@@ -704,6 +705,11 @@ export default function BerandaPage() {
           mapImageSrc="https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-SsfjxCJh43Hr1dqzkbFWUGH3ICZQbH.png&w=320&q=75"
           aria-label="Peta animasi alur membaca dan menulis di platform Lexicon Novel"
         />
+      </section>
+
+      {/* 3.8 Seksi Ulasan Pembaca (Testimonials Section - 3 Orang) */}
+      <section className="w-full mb-20">
+        <TestimonialsSection />
       </section>
 
       {/* 4. Kontak / Footer */}
