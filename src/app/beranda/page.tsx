@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import { Play, ArrowRight, Mail, Search, Star, Bookmark, ShoppingBag, Headphones } from "lucide-react";
 
 export default function BerandaPage() {
@@ -336,11 +337,15 @@ export default function BerandaPage() {
       {/* 1. Tentang Saya (About) */}
       <section className="w-full max-w-5xl mx-auto px-6 py-24 border-t border-[#3D2B1F]/10">
         <div className="flex flex-col md:flex-row gap-16 items-center">
-          <div className="w-full md:w-5/12 aspect-[4/5] bg-book-terracotta/20 rounded-xl relative overflow-hidden shadow-sm flex items-center justify-center">
-            {/* Elegant Placeholder for Image */}
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] opacity-50 mix-blend-multiply"></div>
-            <div className="w-3/4 h-3/4 border border-[#3D2B1F]/20 rounded-lg absolute"></div>
-            <span className="font-editorial text-[#3D2B1F]/50 text-xl italic relative z-10">Potret Penulis</span>
+          <div className="w-full md:w-5/12 aspect-[4/5] bg-book-terracotta/20 rounded-2xl relative overflow-hidden shadow-md group">
+            <Image 
+              src="/aset/penulis.png" 
+              alt="Potret Penulis" 
+              fill 
+              className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+            />
+            {/* Subtle vintage border overlay */}
+            <div className="absolute inset-0 border-4 border-[#FAF8F3]/30 rounded-2xl pointer-events-none"></div>
           </div>
           <div className="w-full md:w-7/12 flex flex-col items-start text-left">
             <h2 className="font-editorial text-4xl md:text-5xl font-bold mb-6 text-[#3D2B1F]">Di Balik Halaman</h2>
