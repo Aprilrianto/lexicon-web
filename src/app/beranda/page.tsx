@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { Play, ArrowRight, Mail } from "lucide-react";
 
 export default function BerandaPage() {
   useEffect(() => {
@@ -331,6 +332,152 @@ export default function BerandaPage() {
 
         </div>
       </main>
+
+      {/* 1. Tentang Saya (About) */}
+      <section className="w-full max-w-5xl mx-auto px-6 py-24 border-t border-[#3D2B1F]/10">
+        <div className="flex flex-col md:flex-row gap-16 items-center">
+          <div className="w-full md:w-5/12 aspect-[4/5] bg-book-terracotta/20 rounded-xl relative overflow-hidden shadow-sm flex items-center justify-center">
+            {/* Elegant Placeholder for Image */}
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] opacity-50 mix-blend-multiply"></div>
+            <div className="w-3/4 h-3/4 border border-[#3D2B1F]/20 rounded-lg absolute"></div>
+            <span className="font-editorial text-[#3D2B1F]/50 text-xl italic relative z-10">Potret Penulis</span>
+          </div>
+          <div className="w-full md:w-7/12 flex flex-col items-start text-left">
+            <h2 className="font-editorial text-4xl md:text-5xl font-bold mb-6 text-[#3D2B1F]">Di Balik Halaman</h2>
+            <p className="font-sans text-[#3D2B1F]/80 text-lg leading-relaxed mb-6">
+              Lexicon Novel bermula dari sebuah kecintaan mendalam terhadap susunan kata dan narasi. Kami percaya bahwa setiap cerita, baik fiksi ilmiah yang membawa kita ke galaksi lain, maupun romansa yang menghangatkan hati, memiliki kekuatan untuk mengubah sudut pandang.
+            </p>
+            <p className="font-sans text-[#3D2B1F]/80 text-lg leading-relaxed mb-8">
+              Ruang ini didedikasikan bagi mereka yang mencari pelarian dalam kata-kata, tempat bertemunya imajinasi dan realita. Mari telusuri setiap halamannya.
+            </p>
+            <button className="flex items-center gap-2 font-editorial text-lg text-book-rust hover:text-book-rust/70 transition-colors group">
+              Kenali Lebih Lanjut
+              <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Buku yang Populer */}
+      <section className="w-full max-w-6xl mx-auto px-6 py-24 bg-[#3D2B1F]/[0.02] rounded-3xl mb-24">
+        <div className="text-center mb-16">
+          <h2 className="font-editorial text-4xl md:text-5xl font-bold mb-4 text-[#3D2B1F]">Buku Populer</h2>
+          <p className="font-sans text-[#3D2B1F]/70 text-lg">Karya-karya yang paling banyak dibaca dan diperbincangkan minggu ini.</p>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {/* Book Card 1 */}
+          <div className="group cursor-pointer flex flex-col items-center">
+            <div className="w-full aspect-[2/3] bg-book-slate rounded-r-lg rounded-l-sm shadow-[8px_8px_16px_rgba(45,25,10,0.15),inset_4px_0_12px_rgba(255,255,255,0.15)] relative mb-6 transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-[12px_12px_24px_rgba(45,25,10,0.2)] flex items-center justify-center p-6 text-center">
+              <div className="absolute left-3 top-0 bottom-0 w-px bg-white/20"></div>
+              <h3 className="font-editorial text-[#FAF8F3] text-2xl font-bold leading-tight">Gema<br/>Waktu</h3>
+            </div>
+            <h4 className="font-editorial font-bold text-xl text-[#3D2B1F] mb-1">Gema Waktu</h4>
+            <span className="font-sans text-sm text-[#3D2B1F]/60">Fiksi Ilmiah</span>
+          </div>
+
+          {/* Book Card 2 */}
+          <div className="group cursor-pointer flex flex-col items-center">
+            <div className="w-full aspect-[2/3] bg-book-terracotta rounded-r-lg rounded-l-sm shadow-[8px_8px_16px_rgba(45,25,10,0.15),inset_4px_0_12px_rgba(255,255,255,0.15)] relative mb-6 transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-[12px_12px_24px_rgba(45,25,10,0.2)] flex items-center justify-center p-6 text-center">
+              <div className="absolute left-3 top-0 bottom-0 w-px bg-white/20"></div>
+              <h3 className="font-editorial text-[#FAF8F3] text-2xl font-bold leading-tight">Jingga di<br/>Ujung Senja</h3>
+            </div>
+            <h4 className="font-editorial font-bold text-xl text-[#3D2B1F] mb-1">Jingga di Ujung Senja</h4>
+            <span className="font-sans text-sm text-[#3D2B1F]/60">Romansa</span>
+          </div>
+
+          {/* Book Card 3 */}
+          <div className="group cursor-pointer flex flex-col items-center">
+            <div className="w-full aspect-[2/3] bg-book-ochre rounded-r-lg rounded-l-sm shadow-[8px_8px_16px_rgba(45,25,10,0.15),inset_4px_0_12px_rgba(255,255,255,0.15)] relative mb-6 transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-[12px_12px_24px_rgba(45,25,10,0.2)] flex items-center justify-center p-6 text-center">
+              <div className="absolute left-3 top-0 bottom-0 w-px bg-white/20"></div>
+              <h3 className="font-editorial text-[#FAF8F3] text-2xl font-bold leading-tight">Filosofi<br/>Kopi</h3>
+            </div>
+            <h4 className="font-editorial font-bold text-xl text-[#3D2B1F] mb-1">Filosofi Kopi</h4>
+            <span className="font-sans text-sm text-[#3D2B1F]/60">Esai & Filsafat</span>
+          </div>
+
+          {/* Book Card 4 */}
+          <div className="group cursor-pointer flex flex-col items-center">
+            <div className="w-full aspect-[2/3] bg-book-teal rounded-r-lg rounded-l-sm shadow-[8px_8px_16px_rgba(45,25,10,0.15),inset_4px_0_12px_rgba(255,255,255,0.15)] relative mb-6 transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-[12px_12px_24px_rgba(45,25,10,0.2)] flex items-center justify-center p-6 text-center">
+              <div className="absolute left-3 top-0 bottom-0 w-px bg-white/20"></div>
+              <h3 className="font-editorial text-[#FAF8F3] text-2xl font-bold leading-tight">Jejak<br/>Langkah</h3>
+            </div>
+            <h4 className="font-editorial font-bold text-xl text-[#3D2B1F] mb-1">Jejak Langkah</h4>
+            <span className="font-sans text-sm text-[#3D2B1F]/60">Koleksi Klasik</span>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Video Pengenalan */}
+      <section className="w-full max-w-5xl mx-auto px-6 mb-32">
+        <div className="w-full aspect-video rounded-3xl bg-[#2F4B54] relative overflow-hidden flex items-center justify-center shadow-2xl group cursor-pointer">
+          {/* Fake Video Thumbnail / Background effect */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#3D2B1F]/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise-lines.png')] opacity-10 mix-blend-overlay"></div>
+          
+          <div className="relative z-10 flex flex-col items-center">
+            <div className="w-20 h-20 bg-[#FAF8F3]/10 backdrop-blur-md rounded-full flex items-center justify-center border border-[#FAF8F3]/20 text-[#FAF8F3] group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <Play className="w-8 h-8 ml-1" fill="currentColor" />
+            </div>
+            <h3 className="font-editorial text-2xl text-[#FAF8F3] mt-6 font-medium tracking-wide">Tonton Pengalaman Membaca</h3>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Kontak / Footer */}
+      <footer className="w-full border-t border-[#3D2B1F]/10 pt-20 pb-12 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
+          <div className="w-full md:w-1/2">
+            <h2 className="font-editorial text-4xl font-bold mb-6 text-[#3D2B1F]">Mari Berbincang</h2>
+            <p className="font-sans text-[#3D2B1F]/70 text-lg mb-8 max-w-md">
+              Punya cerita yang ingin dibagikan atau pertanyaan seputar platform kami? Jangan ragu untuk menyapa.
+            </p>
+            <form className="flex items-end gap-4 w-full max-w-md">
+              <div className="flex-grow border-b border-[#3D2B1F]/30 pb-2 flex items-center gap-3">
+                <Mail className="w-5 h-5 text-[#3D2B1F]/50" />
+                <input 
+                  type="email" 
+                  placeholder="Alamat email Anda" 
+                  className="w-full bg-transparent outline-none text-[#3D2B1F] placeholder:text-[#3D2B1F]/40 font-sans"
+                />
+              </div>
+              <button type="button" className="font-editorial font-medium text-lg px-6 py-2 bg-[#3D2B1F] text-[#FAF8F3] rounded-full hover:bg-book-rust transition-colors">
+                Kirim
+              </button>
+            </form>
+          </div>
+          
+          <div className="w-full md:w-1/4 flex flex-col gap-6">
+            <h3 className="font-editorial font-bold text-xl text-[#3D2B1F]">Navigasi</h3>
+            <ul className="flex flex-col gap-3 font-sans text-[#3D2B1F]/70">
+              <li><a href="/jelajah" className="hover:text-book-rust transition-colors">Jelajah Koleksi</a></li>
+              <li><a href="/rak buku" className="hover:text-book-rust transition-colors">Rak Buku Pribadi</a></li>
+              <li><a href="/q&a" className="hover:text-book-rust transition-colors">Pertanyaan Umum</a></li>
+            </ul>
+          </div>
+          
+          <div className="w-full md:w-1/4 flex flex-col gap-6">
+            <h3 className="font-editorial font-bold text-xl text-[#3D2B1F]">Ikuti Kami</h3>
+            <div className="flex gap-4">
+              <a href="#" className="w-10 h-10 rounded-full border border-[#3D2B1F]/20 flex items-center justify-center hover:bg-[#3D2B1F] hover:text-[#FAF8F3] transition-colors text-[#3D2B1F]">
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full border border-[#3D2B1F]/20 flex items-center justify-center hover:bg-[#3D2B1F] hover:text-[#FAF8F3] transition-colors text-[#3D2B1F]">
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                </svg>
+              </a>
+            </div>
+            <p className="font-sans text-sm text-[#3D2B1F]/50 mt-4">
+              © 2026 Lexicon Novel.<br/>Seluruh hak cipta dilindungi.
+            </p>
+          </div>
+        </div>
+      </footer>
 
     </div>
   );
