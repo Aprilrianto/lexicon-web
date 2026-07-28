@@ -41,8 +41,13 @@ export default function RakBukuPage() {
   return (
     <div className="w-full min-h-screen pt-10 pb-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
       
-      {/* HEADER TITLE */}
-      <div className="text-center mb-8">
+      {/* HEADER TITLE (48px) */}
+      <motion.div 
+        initial={{ opacity: 0, y: -15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="text-center mb-8"
+      >
         <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#EFE8DB] text-[#3D2B1F]/80 text-xs font-editorial font-medium mb-2 border border-[#3D2B1F]/10">
           <BookmarkCheck className="w-3.5 h-3.5 text-[#DDA15E]" />
           Koleksi & Perpustakaan Pribadi Saya
@@ -53,9 +58,9 @@ export default function RakBukuPage() {
         <p className="font-sans text-sm text-[#3D2B1F]/70 max-w-xl mx-auto leading-relaxed">
           Koleksi novel dan buku yang Anda simpan dari halaman Jelajah. Pantau progress membaca dan tata rak impian Anda.
         </p>
-      </div>
+      </motion.div>
 
-      {/* MAIN CONTAINER CARD (Skeuomorphic Soft Cream Panel matching Reference UI) */}
+      {/* MAIN CONTAINER CARD */}
       <div className="w-full bg-[#FAF7F2] border border-[#E7DFD0] rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_12px_40px_-10px_rgba(61,43,31,0.08)] relative overflow-hidden">
         
         {/* TOP BAR: SEARCH & EXPLORE MORE BUTTON */}
@@ -100,33 +105,44 @@ export default function RakBukuPage() {
 
         </div>
 
-        {/* CATEGORY FILTER CHIPS */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none border-b border-[#3D2B1F]/10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-1.5 rounded-full text-xs font-editorial whitespace-nowrap transition-all duration-200 ${
-                selectedCategory === cat
-                  ? "bg-[#3D2B1F] text-[#FAF8F3] shadow-sm font-semibold"
-                  : "bg-[#EFE7D8]/60 text-[#3D2B1F]/70 hover:bg-[#EFE7D8] border border-[#3D2B1F]/5"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* CATEGORY FILTER CHIPS WITH GLIDING ACTIVE PILL */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 scrollbar-none border-b border-[#3D2B1F]/10 relative">
+          {categories.map((cat) => {
+            const isActive = selectedCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`relative px-4 py-1.5 rounded-full text-xs font-editorial whitespace-nowrap transition-colors duration-200 z-10 ${
+                  isActive ? "text-[#FAF8F3] font-semibold" : "text-[#3D2B1F]/70 hover:text-[#3D2B1F]"
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeRakCategoryChip"
+                    transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                    className="absolute inset-0 bg-[#3D2B1F] rounded-full z-[-1] shadow-sm"
+                  />
+                )}
+                {!isActive && (
+                  <div className="absolute inset-0 bg-[#EFE7D8]/60 rounded-full z-[-1] border border-[#3D2B1F]/5 hover:bg-[#EFE7D8]" />
+                )}
+                {cat}
+              </button>
+            );
+          })}
         </div>
 
-        {/* 3D WOODEN SHELVES */}
+        {/* 3D WOODEN SHELVES WITH ANIMATED REORDERING */}
         <div className="flex flex-col gap-12">
           
           {/* ================= SHELF 1: Currently reading ================= */}
           <section className="flex flex-col">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="font-editorial text-2xl font-bold text-[#3D2B1F]">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-editorial text-[48px] font-bold text-[#3D2B1F] leading-tight">
                 Sedang Dibaca
               </h2>
-              <span className="text-xs font-sans text-[#3D2B1F]/60">
+              <span className="text-sm font-editorial font-semibold px-3 py-1 bg-[#EFE8DB] rounded-full text-[#3D2B1F]">
                 {currentlyReadingBooks.length} Buku
               </span>
             </div>
@@ -134,85 +150,112 @@ export default function RakBukuPage() {
             {currentlyReadingBooks.length > 0 ? (
               <div className="light-shelf-container relative w-full pt-4 pb-2">
                 {/* Row of Books standing directly on wood shelf */}
-                <div className="relative z-10 flex items-end gap-6 sm:gap-8 overflow-x-auto pb-1 px-4 min-h-[210px] scrollbar-none">
-                  {currentlyReadingBooks.map((book) => (
-                    <UprightShelfBookCard
-                      key={book.id}
-                      book={book}
-                      onClick={() => setSelectedBook(book)}
-                      showProgressOnShelf={true}
-                    />
-                  ))}
-                </div>
+                <motion.div 
+                  layout
+                  className="relative z-10 flex items-end gap-6 sm:gap-8 overflow-x-auto pb-1 px-4 min-h-[210px] scrollbar-none"
+                >
+                  <AnimatePresence mode="popLayout">
+                    {currentlyReadingBooks.map((book) => (
+                      <UprightShelfBookCard
+                        key={book.id}
+                        book={book}
+                        onClick={() => setSelectedBook(book)}
+                        showProgressOnShelf={true}
+                      />
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
                 {/* Light Beech Wood Shelf Board */}
                 <div className="light-shelf-board"></div>
               </div>
             ) : (
-              <div className="p-8 text-center bg-[#FAF8F3]/50 rounded-2xl border border-dashed border-[#3D2B1F]/15">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="p-8 text-center bg-[#FAF8F3]/50 rounded-2xl border border-dashed border-[#3D2B1F]/15"
+              >
                 <p className="font-sans text-sm text-[#3D2B1F]/60">Belum ada buku yang sedang dibaca.</p>
-              </div>
+              </motion.div>
             )}
           </section>
 
           {/* ================= SHELF 2: Next up ================= */}
           <section className="flex flex-col">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="font-editorial text-2xl font-bold text-[#3D2B1F]">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-editorial text-[48px] font-bold text-[#3D2B1F] leading-tight">
                 Berikutnya
               </h2>
-              <span className="text-xs font-sans text-[#3D2B1F]/60">
+              <span className="text-sm font-editorial font-semibold px-3 py-1 bg-[#EFE8DB] rounded-full text-[#3D2B1F]">
                 {nextUpBooks.length} Buku
               </span>
             </div>
 
             {nextUpBooks.length > 0 ? (
               <div className="light-shelf-container relative w-full pt-4 pb-2">
-                <div className="relative z-10 flex items-end gap-5 sm:gap-7 overflow-x-auto pb-1 px-4 min-h-[210px] scrollbar-none">
-                  {nextUpBooks.map((book) => (
-                    <UprightShelfBookCard
-                      key={book.id}
-                      book={book}
-                      onClick={() => setSelectedBook(book)}
-                    />
-                  ))}
-                </div>
+                <motion.div 
+                  layout
+                  className="relative z-10 flex items-end gap-5 sm:gap-7 overflow-x-auto pb-1 px-4 min-h-[210px] scrollbar-none"
+                >
+                  <AnimatePresence mode="popLayout">
+                    {nextUpBooks.map((book) => (
+                      <UprightShelfBookCard
+                        key={book.id}
+                        book={book}
+                        onClick={() => setSelectedBook(book)}
+                      />
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
                 <div className="light-shelf-board"></div>
               </div>
             ) : (
-              <div className="p-8 text-center bg-[#FAF8F3]/50 rounded-2xl border border-dashed border-[#3D2B1F]/15">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="p-8 text-center bg-[#FAF8F3]/50 rounded-2xl border border-dashed border-[#3D2B1F]/15"
+              >
                 <p className="font-sans text-sm text-[#3D2B1F]/60">Belum ada daftar buku berikutnya.</p>
-              </div>
+              </motion.div>
             )}
           </section>
 
           {/* ================= SHELF 3: Finished ================= */}
           <section className="flex flex-col">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="font-editorial text-2xl font-bold text-[#3D2B1F]">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-editorial text-[48px] font-bold text-[#3D2B1F] leading-tight">
                 Selesai Dibaca
               </h2>
-              <span className="text-xs font-sans text-[#3D2B1F]/60">
+              <span className="text-sm font-editorial font-semibold px-3 py-1 bg-[#EFE8DB] rounded-full text-[#3D2B1F]">
                 {finishedBooks.length} Buku
               </span>
             </div>
 
             {finishedBooks.length > 0 ? (
               <div className="light-shelf-container relative w-full pt-4 pb-2">
-                <div className="relative z-10 flex items-end gap-5 sm:gap-7 overflow-x-auto pb-1 px-4 min-h-[210px] scrollbar-none">
-                  {finishedBooks.map((book) => (
-                    <UprightShelfBookCard
-                      key={book.id}
-                      book={book}
-                      onClick={() => setSelectedBook(book)}
-                    />
-                  ))}
-                </div>
+                <motion.div 
+                  layout
+                  className="relative z-10 flex items-end gap-5 sm:gap-7 overflow-x-auto pb-1 px-4 min-h-[210px] scrollbar-none"
+                >
+                  <AnimatePresence mode="popLayout">
+                    {finishedBooks.map((book) => (
+                      <UprightShelfBookCard
+                        key={book.id}
+                        book={book}
+                        onClick={() => setSelectedBook(book)}
+                      />
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
                 <div className="light-shelf-board"></div>
               </div>
             ) : (
-              <div className="p-8 text-center bg-[#FAF8F3]/50 rounded-2xl border border-dashed border-[#3D2B1F]/15">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="p-8 text-center bg-[#FAF8F3]/50 rounded-2xl border border-dashed border-[#3D2B1F]/15"
+              >
                 <p className="font-sans text-sm text-[#3D2B1F]/60">Belum ada buku yang diselesaikan.</p>
-              </div>
+              </motion.div>
             )}
           </section>
 
@@ -247,7 +290,12 @@ function UprightShelfBookCard({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div 
+    <motion.div 
+      layout
+      initial={{ opacity: 0, scale: 0.88, y: 15 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.88, y: -10 }}
+      transition={{ duration: 0.28, ease: "easeOut" }}
       className="relative flex flex-col items-center group shrink-0"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -273,7 +321,7 @@ function UprightShelfBookCard({
       {/* Upright Standing 3D Book Cover directly resting on shelf */}
       <div 
         onClick={onClick}
-        className="upright-book-card w-28 sm:w-32 md:w-36 h-40 sm:h-48 md:h-52 rounded-r-md rounded-l-sm relative overflow-hidden flex flex-col justify-between p-3 sm:p-4 text-[#FAF8F3] z-10"
+        className="upright-book-card w-28 sm:w-32 md:w-36 h-40 sm:h-48 md:h-52 rounded-r-md rounded-l-sm relative overflow-hidden flex flex-col justify-between p-3 sm:p-4 text-[#FAF8F3] z-10 cursor-pointer"
       >
         <BookCoverVisual book={book} />
       </div>
@@ -283,6 +331,6 @@ function UprightShelfBookCard({
         <div className="w-12 h-1 bg-[#DDA15E] rounded-full my-0.5 shadow-sm opacity-90 z-20" title={`${book.progress}% Selesai`}></div>
       )}
 
-    </div>
+    </motion.div>
   );
 }

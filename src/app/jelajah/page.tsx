@@ -12,7 +12,6 @@ import {
   Bookmark, 
   Sparkles, 
   BookOpen,
-  TrendingUp,
   ArrowUpDown,
   Filter,
   Check
@@ -69,7 +68,12 @@ export default function JelajahPage() {
     <div className="w-full min-h-screen pt-12 pb-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
       
       {/* EDITORIAL HEADER */}
-      <div className="text-center mb-10">
+      <motion.div 
+        initial={{ opacity: 0, y: -15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="text-center mb-10"
+      >
         <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#EFE8DB] text-[#3D2B1F]/80 text-xs font-editorial font-medium mb-3 border border-[#3D2B1F]/10">
           <Compass className="w-3.5 h-3.5 text-[#417D84]" />
           Katalog & Eksplorasi Buku
@@ -80,10 +84,15 @@ export default function JelajahPage() {
         <p className="font-sans text-sm md:text-base text-[#3D2B1F]/70 max-w-xl mx-auto leading-relaxed">
           Temukan ratusan novel, buku ilmu pengetahuan, biografi, dan karya populer pilihan penulis hebat.
         </p>
-      </div>
+      </motion.div>
 
       {/* FEATURED BESTSELLER BANNER */}
-      <div className="w-full mb-10 bg-gradient-to-r from-[#3D2B1F] via-[#4A372A] to-[#2D1F16] rounded-3xl p-6 sm:p-8 text-[#FAF8F3] shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="w-full mb-10 bg-gradient-to-r from-[#3D2B1F] via-[#4A372A] to-[#2D1F16] rounded-3xl p-6 sm:p-8 text-[#FAF8F3] shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6"
+      >
         <div className="relative z-10 max-w-xl">
           <span className="px-3 py-1 rounded-full bg-[#DDA15E]/20 text-[#DDA15E] text-xs font-editorial font-semibold uppercase tracking-wider mb-3 inline-block border border-[#DDA15E]/30">
             ★ Rekomendasi Teratas
@@ -122,7 +131,7 @@ export default function JelajahPage() {
         >
           <BookCoverVisual book={featuredBook} />
         </div>
-      </div>
+      </motion.div>
 
       {/* MAIN EXPLORE CATALOG CONTAINER */}
       <div className="w-full bg-[#FAF7F2] border border-[#E7DFD0] rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_12px_40px_-10px_rgba(61,43,31,0.08)]">
@@ -170,21 +179,32 @@ export default function JelajahPage() {
 
         </div>
 
-        {/* CATEGORY CHIPS */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none border-b border-[#3D2B1F]/10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full text-xs font-editorial whitespace-nowrap transition-all duration-200 ${
-                selectedCategory === cat
-                  ? "bg-[#3D2B1F] text-[#FAF8F3] shadow-sm font-semibold"
-                  : "bg-[#EFE7D8]/60 text-[#3D2B1F]/70 hover:bg-[#EFE7D8] border border-[#3D2B1F]/5"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* CATEGORY CHIPS WITH SMOOTH GLIDING ACTIVE PILL */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none border-b border-[#3D2B1F]/10 relative">
+          {categories.map((cat) => {
+            const isActive = selectedCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`relative px-4 py-2 rounded-full text-xs font-editorial whitespace-nowrap transition-colors duration-200 z-10 ${
+                  isActive ? "text-[#FAF8F3] font-semibold" : "text-[#3D2B1F]/70 hover:text-[#3D2B1F]"
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeCategoryChip"
+                    transition={{ type: "spring", stiffness: 450, damping: 30 }}
+                    className="absolute inset-0 bg-[#3D2B1F] rounded-full z-[-1] shadow-sm"
+                  />
+                )}
+                {!isActive && (
+                  <div className="absolute inset-0 bg-[#EFE7D8]/60 rounded-full z-[-1] border border-[#3D2B1F]/5 hover:bg-[#EFE7D8]" />
+                )}
+                {cat}
+              </button>
+            );
+          })}
         </div>
 
         {/* RESULT COUNT & STATUS */}
@@ -193,65 +213,82 @@ export default function JelajahPage() {
           {selectedCategory !== "Semua" && (
             <button 
               onClick={() => setSelectedCategory("Semua")}
-              className="text-book-rust hover:underline flex items-center gap-1"
+              className="text-book-rust hover:underline flex items-center gap-1 font-semibold"
             >
               Hapus Filter ({selectedCategory})
             </button>
           )}
         </div>
 
-        {/* CATALOG BOOKS GRID */}
+        {/* ANIMATED STAGGERED CATALOG BOOKS GRID */}
         {filteredAndSortedBooks.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {filteredAndSortedBooks.map((book) => {
-              const isBookmarked = bookmarkedIds.includes(book.id);
-              return (
-                <div 
-                  key={book.id}
-                  onClick={() => setSelectedBook(book)}
-                  className="group flex flex-col cursor-pointer bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/10 hover:border-[#3D2B1F]/25 hover:shadow-xl transition-all duration-300 relative"
-                >
-                  {/* Bookmark Button */}
-                  <button
-                    onClick={(e) => toggleBookmark(e, book.id)}
-                    title={isBookmarked ? "Tersimpan di Rak Buku" : "Simpan ke Rak Buku"}
-                    className={`absolute top-5 right-5 z-20 p-2 rounded-full backdrop-blur-md transition-transform active:scale-90 ${
-                      isBookmarked
-                        ? "bg-[#DDA15E] text-[#3D2B1F] shadow"
-                        : "bg-black/30 text-white hover:bg-black/50"
-                    }`}
+          <motion.div 
+            layout
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredAndSortedBooks.map((book) => {
+                const isBookmarked = bookmarkedIds.includes(book.id);
+                return (
+                  <motion.div
+                    layout
+                    key={book.id}
+                    initial={{ opacity: 0, scale: 0.88, y: 15 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.88, y: -10 }}
+                    transition={{ duration: 0.28, ease: "easeOut" }}
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    onClick={() => setSelectedBook(book)}
+                    className="group flex flex-col cursor-pointer bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/10 hover:border-[#3D2B1F]/25 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden"
                   >
-                    <Bookmark className="w-3.5 h-3.5 fill-current" />
-                  </button>
+                    {/* Bookmark Button */}
+                    <button
+                      onClick={(e) => toggleBookmark(e, book.id)}
+                      title={isBookmarked ? "Tersimpan di Rak Buku" : "Simpan ke Rak Buku"}
+                      className={`absolute top-5 right-5 z-20 p-2 rounded-full backdrop-blur-md transition-transform active:scale-90 ${
+                        isBookmarked
+                          ? "bg-[#DDA15E] text-[#3D2B1F] shadow"
+                          : "bg-black/30 text-white hover:bg-black/50"
+                      }`}
+                    >
+                      <Bookmark className="w-3.5 h-3.5 fill-current" />
+                    </button>
 
-                  {/* Book Cover Container */}
-                  <div className="relative w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-3 group-hover:-translate-y-1 transition-transform">
-                    <BookCoverVisual book={book} />
-                  </div>
-
-                  {/* Book Metadata */}
-                  <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] line-clamp-1 group-hover:text-book-rust transition-colors">
-                    {book.title}
-                  </h4>
-                  <p className="font-sans text-xs text-[#3D2B1F]/60 line-clamp-1 mb-2">
-                    {book.author}
-                  </p>
-
-                  <div className="mt-auto flex items-center justify-between pt-2 border-t border-[#3D2B1F]/5">
-                    <span className="text-[10px] font-medium text-[#3D2B1F]/60 px-2 py-0.5 bg-[#EFE7D8] rounded-full">
-                      {book.category}
-                    </span>
-                    <div className="flex items-center gap-1 text-[#DDA15E]">
-                      <Star className="w-3 h-3 fill-current" />
-                      <span className="text-xs font-bold text-[#3D2B1F]">{book.rating}</span>
+                    {/* Book Cover Container */}
+                    <div className="relative w-full aspect-[2/3] rounded-xl overflow-hidden shadow-sm mb-3">
+                      <BookCoverVisual book={book} />
                     </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+
+                    {/* Book Metadata */}
+                    <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] line-clamp-1 group-hover:text-book-rust transition-colors">
+                      {book.title}
+                    </h4>
+                    <p className="font-sans text-xs text-[#3D2B1F]/60 line-clamp-1 mb-2">
+                      {book.author}
+                    </p>
+
+                    <div className="mt-auto flex items-center justify-between pt-2 border-t border-[#3D2B1F]/5">
+                      <span className="text-[10px] font-medium text-[#3D2B1F]/60 px-2 py-0.5 bg-[#EFE7D8] rounded-full">
+                        {book.category}
+                      </span>
+                      <div className="flex items-center gap-1 text-[#DDA15E]">
+                        <Star className="w-3 h-3 fill-current" />
+                        <span className="text-xs font-bold text-[#3D2B1F]">{book.rating}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </motion.div>
         ) : (
-          <div className="p-12 text-center bg-[#FAF8F3]/60 rounded-3xl border border-dashed border-[#3D2B1F]/15">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.25 }}
+            className="p-12 text-center bg-[#FAF8F3]/60 rounded-3xl border border-dashed border-[#3D2B1F]/15"
+          >
             <Compass className="w-10 h-10 mx-auto text-[#3D2B1F]/30 mb-3" />
             <h3 className="font-editorial text-xl font-bold text-[#3D2B1F] mb-1">
               Buku Tidak Ditemukan
@@ -261,11 +298,11 @@ export default function JelajahPage() {
             </p>
             <button 
               onClick={() => { setSearchQuery(""); setSelectedCategory("Semua"); }}
-              className="px-5 py-2 rounded-full bg-[#3D2B1F] text-[#FAF8F3] font-editorial text-xs"
+              className="px-5 py-2 rounded-full bg-[#3D2B1F] text-[#FAF8F3] font-editorial text-xs font-semibold shadow-sm hover:bg-book-rust transition-colors"
             >
               Reset Filter
             </button>
-          </div>
+          </motion.div>
         )}
 
       </div>
