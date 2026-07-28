@@ -416,12 +416,13 @@ export default function BerandaPage() {
           </p>
 
           {/* SmoothUI Book Demo Showcase */}
-          <div className="w-full flex min-h-[350px] flex-wrap items-center justify-center gap-8 md:gap-12 mb-10 relative z-10">
+          <div className="w-full flex min-h-[380px] flex-wrap items-center justify-center gap-8 md:gap-12 mb-10 relative z-10">
             {/* Default stripe variant */}
-            <Book title="The art of smooth interfaces" />
+            <Book width={235} title="The art of smooth interfaces" />
 
             {/* Simple variant with custom color */}
             <Book
+              width={235}
               color="#7DC1C1"
               textColor="white"
               title="Design Engineering Handbook"
@@ -429,7 +430,7 @@ export default function BerandaPage() {
             />
 
             {/* Custom color stripe variant */}
-            <Book color="#9D2127" title="Building for the modern web" />
+            <Book width={235} color="#9D2127" title="Building for the modern web" />
           </div>
 
           {/* Bottom Actions */}
