@@ -393,7 +393,7 @@ export default function BerandaPage() {
           </div>
 
           {/* TOP HERO SHOWCASE (NEW & TRENDING) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-12 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-2 relative z-10">
             
             {/* LEFT: Heading & Search */}
             <div className="lg:col-span-4 flex flex-col items-start text-left">
@@ -416,10 +416,10 @@ export default function BerandaPage() {
             </div>
 
             {/* CENTER: Big 3D Featured Book */}
-            <div className="lg:col-span-4 flex justify-center py-6">
+            <div className="lg:col-span-4 flex justify-center py-2">
               <div className="relative group cursor-pointer perspective-1000">
-                {/* 3D Book Cover standing upright */}
-                <div className="w-56 h-80 rounded-r-md rounded-l-sm bg-gradient-to-br from-[#2F4B54] via-[#417D84] to-[#2F4B54] p-5 flex flex-col justify-between text-[#FAF8F3] relative shadow-[15px_20px_35px_rgba(45,25,10,0.3)] transition-transform duration-500 group-hover:rotate-y-[-6deg] group-hover:scale-105">
+                {/* 3D Book Cover standing upright on shelf */}
+                <div className="w-56 h-80 rounded-r-md rounded-l-sm bg-gradient-to-br from-[#2F4B54] via-[#417D84] to-[#2F4B54] p-5 flex flex-col justify-between text-[#FAF8F3] relative shadow-[15px_15px_30px_rgba(45,25,10,0.35)] transition-transform duration-500 group-hover:rotate-y-[-6deg] group-hover:scale-105">
                   {/* Badge */}
                   <span className="text-[10px] font-sans tracking-widest uppercase opacity-80 border-b border-white/20 pb-1">
                     #1 New York Times Bestseller
@@ -443,8 +443,6 @@ export default function BerandaPage() {
                   {/* Right side 3D page thickness */}
                   <div className="absolute right-0 top-1 bottom-1 w-3 bg-[#EFE4D1] translate-x-3 rotate-y-90 origin-left border-l border-black/10"></div>
                 </div>
-                {/* Soft floor shadow */}
-                <div className="w-48 h-4 bg-black/20 rounded-full blur-md mx-auto mt-4"></div>
               </div>
             </div>
 
@@ -501,8 +499,18 @@ export default function BerandaPage() {
             </div>
           </div>
 
-          {/* SHELF BOARD SEPARATOR */}
-          <div className="w-full h-2 bg-gradient-to-r from-[#DDA15E]/20 via-[#3D2B1F]/15 to-[#DDA15E]/20 rounded-full my-8 shadow-inner"></div>
+          {/* REALISTIC 3D CREAM WALL SHELF BOARD */}
+          <div className="relative w-full -mt-2 md:-mt-3 mb-8 z-20">
+            {/* Shelf Board Top & Front Lip */}
+            <div className="w-full h-5 bg-[#E8E2D3] border-t border-white/80 border-b border-[#3D2B1F]/20 rounded-sm relative shadow-[0_14px_28px_-4px_rgba(45,25,10,0.28),inset_0_2px_4px_rgba(255,255,255,0.9),inset_0_-2px_4px_rgba(0,0,0,0.12)]">
+              {/* Top Surface Highlight */}
+              <div className="absolute inset-x-0 top-0 h-1.5 bg-[#F6F2E7] opacity-90 rounded-t-sm"></div>
+              {/* Bottom Lip Shadow Accent */}
+              <div className="absolute inset-x-0 bottom-0 h-1 bg-[#D8CEB7]/80"></div>
+            </div>
+            {/* Soft Linear Gradient Wall Shadow extending down onto lower section */}
+            <div className="w-full h-10 bg-gradient-to-b from-[#3D2B1F]/20 via-[#3D2B1F]/06 to-transparent pointer-events-none -mt-0.5"></div>
+          </div>
 
           {/* BOTTOM ROW: RECENT BESTSELLERS */}
           <div className="w-full flex flex-col md:flex-row items-start md:items-center gap-6 pt-4">
@@ -598,10 +606,10 @@ export default function BerandaPage() {
                 </div>
               </div>
 
-              {/* Card 4 */}
-              <div className="bg-[#FAF8F3]/60 hover:bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/5 hover:border-[#3D2B1F]/15 transition-all duration-300 flex items-center gap-4 group cursor-pointer shadow-none hover:shadow-md">
+              {/* Card 4 (Tilted like reference image) */}
+              <div className="bg-[#FAF8F3]/60 hover:bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/5 hover:border-[#3D2B1F]/15 transition-all duration-300 flex items-center gap-4 group cursor-pointer shadow-none hover:shadow-md transform md:rotate-3 hover:rotate-0">
                 {/* 3D Book Cover Mini */}
-                <div className="w-16 h-24 rounded-r bg-[#C88D46] shrink-0 shadow-[4px_6px_12px_rgba(0,0,0,0.18)] group-hover:-translate-y-1 transition-transform p-2 flex flex-col justify-between text-[#FAF8F3] relative overflow-hidden">
+                <div className="w-16 h-24 rounded-r bg-[#C88D46] shrink-0 shadow-[6px_8px_16px_rgba(0,0,0,0.22)] group-hover:-translate-y-1 transition-transform p-2 flex flex-col justify-between text-[#FAF8F3] relative overflow-hidden">
                   <span className="text-[7px] font-bold uppercase tracking-wider">New</span>
                   <p className="font-editorial font-bold text-xs leading-tight">BLIND TIGER</p>
                 </div>
