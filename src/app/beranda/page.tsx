@@ -2,9 +2,10 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import { Play, ArrowRight, Mail, Search, Star, Bookmark, ShoppingBag, Headphones } from "lucide-react";
+import { Play, ArrowRight, Mail, Search, Star, Bookmark, ShoppingBag, Headphones, Sparkles } from "lucide-react";
 import { AnimatedRoadmap } from "@/components/ui/animated-roadmap";
 import TestimonialsSection from "@/components/ui/testimonials-2";
+import Book from "@/components/smoothui/components/book";
 
 const milestonesData = [
   {
@@ -389,6 +390,63 @@ export default function BerandaPage() {
               <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
+        </div>
+      </section>
+
+      {/* 1.5 Section Iklan Koleksi Eksklusif (Memakai Book smoothui) */}
+      <section className="w-full max-w-6xl mx-auto px-4 md:px-8 mb-24">
+        <div className="w-full bg-gradient-to-br from-[#2D1F16] via-[#3D2B1F] to-[#1E140D] rounded-3xl p-8 md:p-12 text-[#FAF8F3] shadow-2xl relative overflow-hidden flex flex-col items-center text-center">
+          
+          {/* Subtle Background Glow Accent */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#DDA15E]/15 via-transparent to-transparent pointer-events-none"></div>
+          
+          {/* Promo Badge */}
+          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#DDA15E]/20 text-[#DDA15E] text-xs font-editorial font-semibold mb-4 border border-[#DDA15E]/30 shadow-sm">
+            <Sparkles className="w-4 h-4 text-[#DDA15E]" />
+            PROMO SPESIAL PERPUSTAKAAN DIGITAL
+          </span>
+
+          {/* Heading */}
+          <h2 className="font-editorial text-4xl font-bold mb-3 leading-tight text-[#FAF8F3] max-w-2xl">
+            Seri Literatur Eksklusif Desain & Teknologi Modern
+          </h2>
+
+          <p className="font-sans text-sm md:text-base text-white/80 max-w-xl mb-10 leading-relaxed">
+            Dapatkan akses penuh ke koleksi buku teknikal terbaik mengenai arsitektur antarmuka digital, desain sistem, dan rekayasa web modern.
+          </p>
+
+          {/* SmoothUI Book Demo Showcase */}
+          <div className="w-full flex min-h-[350px] flex-wrap items-center justify-center gap-8 md:gap-12 mb-10 relative z-10">
+            {/* Default stripe variant */}
+            <Book title="The art of smooth interfaces" />
+
+            {/* Simple variant with custom color */}
+            <Book
+              color="#7DC1C1"
+              textColor="white"
+              title="Design Engineering Handbook"
+              variant="simple"
+            />
+
+            {/* Custom color stripe variant */}
+            <Book color="#9D2127" title="Building for the modern web" />
+          </div>
+
+          {/* Bottom Actions */}
+          <div className="flex flex-wrap items-center justify-center gap-4 relative z-10">
+            <a
+              href="/jelajah"
+              className="px-8 py-3.5 rounded-full bg-[#DDA15E] text-[#3D2B1F] font-editorial font-bold text-sm hover:bg-white transition-colors shadow-lg flex items-center gap-2"
+            >
+              Jelajah Seri Eksklusif
+              <ArrowRight className="w-4 h-4" />
+            </a>
+
+            <span className="text-xs font-sans text-[#DDA15E] bg-[#DDA15E]/10 border border-[#DDA15E]/30 px-4 py-3 rounded-full font-medium">
+              🏷️ Diskon Mahasiswa 30% Terbatas
+            </span>
+          </div>
+
         </div>
       </section>
 
