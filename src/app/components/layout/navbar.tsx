@@ -278,7 +278,7 @@ export default function Navbar() {
   const items: DockItem[] = [
     { icon: <Home className={pathname === "/beranda" ? "text-secondary" : ""} />, label: "Beranda", href: "/beranda" },
     { icon: <Compass className={pathname === "/jelajah" ? "text-secondary" : ""} />, label: "Jelajah", href: "/jelajah" },
-    { icon: <Library className={pathname === "/rak buku" ? "text-secondary" : ""} />, label: "Rak Buku", href: "/rak buku" },
+    { icon: <Library className={pathname === "/rak-buku" ? "text-secondary" : ""} />, label: "Rak Buku", href: "/rak-buku" },
     { icon: <MessageCircleQuestion className={pathname === "/q&a" ? "text-secondary" : ""} />, label: "Q&A", href: "/q&a" },
     { icon: <Mail className={pathname === "/kontak" ? "text-secondary" : ""} />, label: "Kontak", href: "/kontak" },
   ];

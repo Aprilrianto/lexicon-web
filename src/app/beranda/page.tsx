@@ -739,7 +739,7 @@ export default function BerandaPage() {
             <h3 className="font-editorial font-bold text-xl text-[#3D2B1F]">Navigasi</h3>
             <ul className="flex flex-col gap-3 font-sans text-[#3D2B1F]/70">
               <li><a href="/jelajah" className="hover:text-book-rust transition-colors">Jelajah Koleksi</a></li>
-              <li><a href="/rak buku" className="hover:text-book-rust transition-colors">Rak Buku Pribadi</a></li>
+              <li><a href="/rak-buku" className="hover:text-book-rust transition-colors">Rak Buku Pribadi</a></li>
               <li><a href="/q&a" className="hover:text-book-rust transition-colors">Pertanyaan Umum</a></li>
             </ul>
           </div>
