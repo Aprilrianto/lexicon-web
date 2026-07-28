@@ -3,6 +3,34 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import { Play, ArrowRight, Mail, Search, Star, Bookmark, ShoppingBag, Headphones } from "lucide-react";
+import { AnimatedRoadmap } from "@/components/ui/animated-roadmap";
+
+const milestonesData = [
+  {
+    id: 1,
+    name: "1. Temukan Cerita",
+    status: "complete" as const,
+    position: { top: "70%", left: "5%" },
+  },
+  {
+    id: 2,
+    name: "2. Simpan di Rak Buku",
+    status: "complete" as const,
+    position: { top: "15%", left: "20%" },
+  },
+  {
+    id: 3,
+    name: "3. Nikmati Pembacaan",
+    status: "in-progress" as const,
+    position: { top: "45%", left: "50%" },
+  },
+  {
+    id: 4,
+    name: "4. Tulis & Bagikan Karya",
+    status: "pending" as const,
+    position: { top: "10%", right: "8%" },
+  },
+];
 
 export default function BerandaPage() {
   useEffect(() => {
@@ -645,7 +673,7 @@ export default function BerandaPage() {
       </section>
 
       {/* 3. Video Pengenalan */}
-      <section className="w-full max-w-5xl mx-auto px-6 mb-32">
+      <section className="w-full max-w-5xl mx-auto px-6 mb-24">
         <div className="w-full aspect-video rounded-3xl bg-[#2F4B54] relative overflow-hidden flex items-center justify-center shadow-2xl group cursor-pointer">
           {/* Fake Video Thumbnail / Background effect */}
           <div className="absolute inset-0 bg-gradient-to-tr from-[#3D2B1F]/80 to-transparent"></div>
@@ -658,6 +686,24 @@ export default function BerandaPage() {
             <h3 className="font-editorial text-2xl text-[#FAF8F3] mt-6 font-medium tracking-wide">Tonton Pengalaman Membaca</h3>
           </div>
         </div>
+      </section>
+
+      {/* 3.5 Peta Perjalanan Membaca (Animated Roadmap Map) */}
+      <section className="w-full max-w-6xl mx-auto px-6 mb-32 text-center">
+        <div className="mb-4">
+          <h2 className="font-editorial text-4xl md:text-5xl font-bold mb-4 text-[#3D2B1F]">
+            Peta Perjalanan Membaca
+          </h2>
+          <p className="font-sans text-[#3D2B1F]/70 text-lg max-w-xl mx-auto">
+            Pantau setiap alur dan pencapaian Anda dari pertama memilih buku hingga menerbitkan karya.
+          </p>
+        </div>
+
+        <AnimatedRoadmap
+          milestones={milestonesData}
+          mapImageSrc="https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-SsfjxCJh43Hr1dqzkbFWUGH3ICZQbH.png&w=320&q=75"
+          aria-label="Peta animasi alur membaca dan menulis di platform Lexicon Novel"
+        />
       </section>
 
       {/* 4. Kontak / Footer */}
