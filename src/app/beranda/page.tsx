@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Play, ArrowRight, Mail, Search, Star, Bookmark, ShoppingBag, Headphones, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedRoadmap } from "@/components/ui/animated-roadmap";
 import TestimonialsSection from "@/components/ui/testimonials-2";
 import Book from "@/components/smoothui/components/book";
@@ -34,7 +35,73 @@ const milestonesData = [
   },
 ];
 
+const POPULAR_SHOWCASE_BOOKS = [
+  {
+    id: 0,
+    title: "The Last Thing He Told Me",
+    author: "Laura Dave",
+    badge: "#1 New York Times Bestseller",
+    tag: "REESE'S BOOK CLUB",
+    bgGradient: "from-[#2F4B54] via-[#417D84] to-[#2F4B54]",
+    coverColor: "#2F4B54",
+    rating: 5,
+    miniTitle: "THE LAST THING",
+    miniBadge: "BESTSELLER"
+  },
+  {
+    id: 1,
+    title: "False Witness: A Novel",
+    author: "Karin Slaughter",
+    badge: "Bestseller Thriller",
+    tag: "CRIME READS",
+    bgGradient: "from-[#C55636] via-[#D86B4B] to-[#9C381E]",
+    coverColor: "#C55636",
+    rating: 4,
+    miniTitle: "FALSE WITNESS",
+    miniBadge: "BESTSELLER"
+  },
+  {
+    id: 2,
+    title: "Malibu Rising",
+    author: "Taylor Jenkins Reid",
+    badge: "Popular Novel",
+    tag: "SUMMER READ",
+    bgGradient: "from-[#417D84] via-[#2F4B54] to-[#1E3339]",
+    coverColor: "#417D84",
+    rating: 5,
+    miniTitle: "MALIBU RISING",
+    miniBadge: "POPULAR"
+  },
+  {
+    id: 3,
+    title: "Black Ice",
+    author: "Brad Thor",
+    badge: "Top Rated Thriller",
+    tag: "SPY FICTION",
+    bgGradient: "from-[#1F2B33] via-[#2F4B54] to-[#0F171C]",
+    coverColor: "#2F4B54",
+    rating: 4,
+    miniTitle: "BLACK ICE",
+    miniBadge: "TOP RATED"
+  },
+  {
+    id: 4,
+    title: "Blind Tiger",
+    author: "Sandra Brown",
+    badge: "New Release",
+    tag: "HISTORICAL FICTION",
+    bgGradient: "from-[#C88D46] via-[#DDA15E] to-[#A36D2A]",
+    coverColor: "#C88D46",
+    rating: 4,
+    miniTitle: "BLIND TIGER",
+    miniBadge: "NEW"
+  }
+];
+
 export default function BerandaPage() {
+  const [activeFeaturedIndex, setActiveFeaturedIndex] = useState(0);
+  const activeFeaturedBook = POPULAR_SHOWCASE_BOOKS[activeFeaturedIndex] || POPULAR_SHOWCASE_BOOKS[0];
+
   useEffect(() => {
     const books = document.querySelectorAll<HTMLElement>('.book-spine');
     
@@ -460,7 +527,7 @@ export default function BerandaPage() {
           <div className="w-full flex flex-wrap justify-between items-center gap-4 mb-12">
             {/* Logo / Tag inside card */}
             <div className="font-editorial text-2xl font-bold tracking-wider text-[#3D2B1F]">
-              BooKS
+              Lexicon
             </div>
 
             {/* Middle Pills */}
@@ -508,35 +575,44 @@ export default function BerandaPage() {
               </div>
             </div>
 
-            {/* CENTER: Big 3D Featured Book */}
-            <div className="lg:col-span-4 flex justify-center py-2">
-              <div className="relative group cursor-pointer perspective-1000">
-                {/* 3D Book Cover standing upright on shelf */}
-                <div className="w-56 h-80 rounded-r-md rounded-l-sm bg-gradient-to-br from-[#2F4B54] via-[#417D84] to-[#2F4B54] p-5 flex flex-col justify-between text-[#FAF8F3] relative shadow-[15px_15px_30px_rgba(45,25,10,0.35)] transition-transform duration-500 group-hover:rotate-y-[-6deg] group-hover:scale-105">
-                  {/* Badge */}
-                  <span className="text-[10px] font-sans tracking-widest uppercase opacity-80 border-b border-white/20 pb-1">
-                    #1 New York Times Bestseller
-                  </span>
-                  
-                  {/* Cover Title */}
-                  <div className="my-auto">
-                    <h3 className="font-editorial text-3xl font-bold leading-tight drop-shadow-md">
-                      The Last<br />Thing He<br />Told Me
-                    </h3>
-                    <div className="w-10 h-10 rounded-full bg-[#DDA15E] my-3 flex items-center justify-center text-[10px] font-bold text-[#3D2B1F] shadow-sm">
-                      REESE'S
+            {/* CENTER: Big 3D Featured Book (Swaps smoothly on selection) */}
+            <div className="lg:col-span-4 flex justify-center items-center py-2 min-h-[340px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeFeaturedBook.id}
+                  initial={{ opacity: 0, scale: 0.88, rotateY: -15, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, rotateY: 0, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.88, rotateY: 15, y: -15 }}
+                  transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
+                  className="relative group cursor-pointer perspective-1000"
+                >
+                  {/* 3D Book Cover standing upright on shelf */}
+                  <div className={`w-56 h-80 rounded-r-md rounded-l-sm bg-gradient-to-br ${activeFeaturedBook.bgGradient} p-5 flex flex-col justify-between text-[#FAF8F3] relative shadow-[15px_15px_30px_rgba(45,25,10,0.35)] transition-transform duration-500 group-hover:rotate-y-[-6deg] group-hover:scale-105`}>
+                    {/* Badge */}
+                    <span className="text-[10px] font-sans tracking-widest uppercase opacity-80 border-b border-white/20 pb-1">
+                      {activeFeaturedBook.badge}
+                    </span>
+                    
+                    {/* Cover Title */}
+                    <div className="my-auto">
+                      <h3 className="font-editorial text-3xl font-bold leading-tight drop-shadow-md whitespace-pre-line">
+                        {activeFeaturedBook.title}
+                      </h3>
+                      <div className="w-fit px-3 py-1 rounded-full bg-[#DDA15E] my-3 flex items-center justify-center text-[10px] font-bold text-[#3D2B1F] shadow-sm">
+                        {activeFeaturedBook.tag}
+                      </div>
                     </div>
+
+                    {/* Author */}
+                    <p className="font-editorial italic text-lg font-medium">{activeFeaturedBook.author}</p>
+
+                    {/* Spine Highlight 3D effect */}
+                    <div className="absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-black/30 via-transparent to-white/10 rounded-l-sm"></div>
+                    {/* Right side 3D page thickness */}
+                    <div className="absolute right-0 top-1 bottom-1 w-3 bg-[#EFE4D1] translate-x-3 rotate-y-90 origin-left border-l border-black/10"></div>
                   </div>
-
-                  {/* Author */}
-                  <p className="font-editorial italic text-lg font-medium">Laura Dave</p>
-
-                  {/* Spine Highlight 3D effect */}
-                  <div className="absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-black/30 via-transparent to-white/10 rounded-l-sm"></div>
-                  {/* Right side 3D page thickness */}
-                  <div className="absolute right-0 top-1 bottom-1 w-3 bg-[#EFE4D1] translate-x-3 rotate-y-90 origin-left border-l border-black/10"></div>
-                </div>
-              </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
             {/* RIGHT: Cards (Author of Week & Audio Player) */}
@@ -605,7 +681,7 @@ export default function BerandaPage() {
             <div className="w-full h-12 bg-gradient-to-b from-[#3D2B1F]/10 via-[#3D2B1F]/03 to-transparent blur-[2px] opacity-75 pointer-events-none -mt-0.5"></div>
           </div>
 
-          {/* BOTTOM ROW: RECENT BESTSELLERS */}
+          {/* BOTTOM ROW: RECENT BESTSELLERS (Interactive Selection Swaps Center Book) */}
           <div className="w-full flex flex-col md:flex-row items-start md:items-center gap-6 pt-4">
             
             {/* Vertical Label */}
@@ -621,109 +697,52 @@ export default function BerandaPage() {
             {/* 4 Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
               
-              {/* Card 1 */}
-              <div className="bg-[#FAF8F3]/60 hover:bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/5 hover:border-[#3D2B1F]/15 transition-all duration-300 flex items-center gap-4 group cursor-pointer shadow-none hover:shadow-md">
-                {/* 3D Book Cover Mini */}
-                <div className="w-16 h-24 rounded-r bg-[#C55636] shrink-0 shadow-[4px_6px_12px_rgba(0,0,0,0.18)] group-hover:-translate-y-1 transition-transform p-2 flex flex-col justify-between text-[#FAF8F3] relative overflow-hidden">
-                  <span className="text-[7px] font-bold uppercase tracking-wider">Bestseller</span>
-                  <p className="font-editorial font-bold text-xs leading-tight">LEFT TO FEAR</p>
-                </div>
-                {/* Book Details */}
-                <div className="flex flex-col items-start text-left">
-                  <div className="flex items-center gap-1 text-[#DDA15E] mb-1">
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 text-[#3D2B1F]/20" />
-                  </div>
-                  <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] leading-tight mb-0.5 line-clamp-1">
-                    False Witness
-                  </h4>
-                  <span className="font-sans text-xs text-[#3D2B1F]/60 mb-2">Karin Slaughter</span>
-                  <button className="px-3 py-1 rounded-full border border-[#DDA15E]/60 text-[11px] font-medium text-[#3D2B1F] hover:bg-[#DDA15E] hover:text-[#FAF8F3] transition-colors">
-                    Baca Sekarang
-                  </button>
-                </div>
-              </div>
+              {POPULAR_SHOWCASE_BOOKS.slice(1).map((bookItem) => {
+                const isSelected = activeFeaturedIndex === bookItem.id;
+                return (
+                  <div 
+                    key={bookItem.id}
+                    onClick={() => setActiveFeaturedIndex(bookItem.id)}
+                    className={`p-3 rounded-2xl border transition-all duration-300 flex items-center gap-4 group cursor-pointer ${
+                      isSelected 
+                        ? "bg-[#FAF8F3] border-[#DDA15E] shadow-md ring-2 ring-[#DDA15E]/40 scale-102"
+                        : "bg-[#FAF8F3]/60 hover:bg-[#FAF8F3] border-[#3D2B1F]/5 hover:border-[#3D2B1F]/20"
+                    }`}
+                  >
+                    {/* 3D Book Cover Mini */}
+                    <div 
+                      className="w-16 h-24 rounded-r shrink-0 shadow-[4px_6px_12px_rgba(0,0,0,0.18)] group-hover:-translate-y-1 transition-transform p-2 flex flex-col justify-between text-[#FAF8F3] relative overflow-hidden"
+                      style={{ backgroundColor: bookItem.coverColor }}
+                    >
+                      <span className="text-[7px] font-bold uppercase tracking-wider">{bookItem.miniBadge}</span>
+                      <p className="font-editorial font-bold text-xs leading-tight">{bookItem.miniTitle}</p>
+                    </div>
 
-              {/* Card 2 */}
-              <div className="bg-[#FAF8F3]/60 hover:bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/5 hover:border-[#3D2B1F]/15 transition-all duration-300 flex items-center gap-4 group cursor-pointer shadow-none hover:shadow-md">
-                {/* 3D Book Cover Mini */}
-                <div className="w-16 h-24 rounded-r bg-[#417D84] shrink-0 shadow-[4px_6px_12px_rgba(0,0,0,0.18)] group-hover:-translate-y-1 transition-transform p-2 flex flex-col justify-between text-[#FAF8F3] relative overflow-hidden">
-                  <span className="text-[7px] font-bold uppercase tracking-wider">Popular</span>
-                  <p className="font-editorial font-bold text-xs leading-tight">MALIBU RISING</p>
-                </div>
-                {/* Book Details */}
-                <div className="flex flex-col items-start text-left">
-                  <div className="flex items-center gap-1 text-[#DDA15E] mb-1">
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
+                    {/* Book Details */}
+                    <div className="flex flex-col items-start text-left">
+                      <div className="flex items-center gap-1 text-[#DDA15E] mb-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            className={`w-3 h-3 ${i < bookItem.rating ? "fill-current" : "text-[#3D2B1F]/20"}`} 
+                          />
+                        ))}
+                      </div>
+                      <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] leading-tight mb-0.5 line-clamp-1">
+                        {bookItem.title.split(":")[0]}
+                      </h4>
+                      <span className="font-sans text-xs text-[#3D2B1F]/60 mb-2">{bookItem.author}</span>
+                      <button className={`px-3 py-1 rounded-full border text-[11px] font-medium transition-colors ${
+                        isSelected 
+                          ? "bg-[#DDA15E] text-[#FAF8F3] border-[#DDA15E]" 
+                          : "border-[#DDA15E]/60 text-[#3D2B1F] group-hover:bg-[#DDA15E] group-hover:text-[#FAF8F3]"
+                      }`}>
+                        {isSelected ? "Sedang Tampil" : "Baca Sekarang"}
+                      </button>
+                    </div>
                   </div>
-                  <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] leading-tight mb-0.5 line-clamp-1">
-                    Malibu Rising
-                  </h4>
-                  <span className="font-sans text-xs text-[#3D2B1F]/60 mb-2">Taylor Jenkins</span>
-                  <button className="px-3 py-1 rounded-full border border-[#DDA15E]/60 text-[11px] font-medium text-[#3D2B1F] hover:bg-[#DDA15E] hover:text-[#FAF8F3] transition-colors">
-                    Baca Sekarang
-                  </button>
-                </div>
-              </div>
-
-              {/* Card 3 */}
-              <div className="bg-[#FAF8F3]/60 hover:bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/5 hover:border-[#3D2B1F]/15 transition-all duration-300 flex items-center gap-4 group cursor-pointer shadow-none hover:shadow-md">
-                {/* 3D Book Cover Mini */}
-                <div className="w-16 h-24 rounded-r bg-[#2F4B54] shrink-0 shadow-[4px_6px_12px_rgba(0,0,0,0.18)] group-hover:-translate-y-1 transition-transform p-2 flex flex-col justify-between text-[#FAF8F3] relative overflow-hidden">
-                  <span className="text-[7px] font-bold uppercase tracking-wider">Top Rated</span>
-                  <p className="font-editorial font-bold text-xs leading-tight">BLACK ICE</p>
-                </div>
-                {/* Book Details */}
-                <div className="flex flex-col items-start text-left">
-                  <div className="flex items-center gap-1 text-[#DDA15E] mb-1">
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 text-[#3D2B1F]/20" />
-                    <Star className="w-3 h-3 text-[#3D2B1F]/20" />
-                  </div>
-                  <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] leading-tight mb-0.5 line-clamp-1">
-                    Black Ice
-                  </h4>
-                  <span className="font-sans text-xs text-[#3D2B1F]/60 mb-2">Brad Thor</span>
-                  <button className="px-3 py-1 rounded-full border border-[#DDA15E]/60 text-[11px] font-medium text-[#3D2B1F] hover:bg-[#DDA15E] hover:text-[#FAF8F3] transition-colors">
-                    Baca Sekarang
-                  </button>
-                </div>
-              </div>
-
-              {/* Card 4 (Tilted like reference image) */}
-              <div className="bg-[#FAF8F3]/60 hover:bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/5 hover:border-[#3D2B1F]/15 transition-all duration-300 flex items-center gap-4 group cursor-pointer shadow-none hover:shadow-md transform md:rotate-3 hover:rotate-0">
-                {/* 3D Book Cover Mini */}
-                <div className="w-16 h-24 rounded-r bg-[#C88D46] shrink-0 shadow-[6px_8px_16px_rgba(0,0,0,0.22)] group-hover:-translate-y-1 transition-transform p-2 flex flex-col justify-between text-[#FAF8F3] relative overflow-hidden">
-                  <span className="text-[7px] font-bold uppercase tracking-wider">New</span>
-                  <p className="font-editorial font-bold text-xs leading-tight">BLIND TIGER</p>
-                </div>
-                {/* Book Details */}
-                <div className="flex flex-col items-start text-left">
-                  <div className="flex items-center gap-1 text-[#DDA15E] mb-1">
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 fill-current" />
-                    <Star className="w-3 h-3 text-[#3D2B1F]/20" />
-                  </div>
-                  <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] leading-tight mb-0.5 line-clamp-1">
-                    Blind Tiger
-                  </h4>
-                  <span className="font-sans text-xs text-[#3D2B1F]/60 mb-2">Sandra Brown</span>
-                  <button className="px-3 py-1 rounded-full border border-[#DDA15E]/60 text-[11px] font-medium text-[#3D2B1F] hover:bg-[#DDA15E] hover:text-[#FAF8F3] transition-colors">
-                    Baca Sekarang
-                  </button>
-                </div>
-              </div>
+                );
+              })}
 
             </div>
 
