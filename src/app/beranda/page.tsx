@@ -396,7 +396,7 @@ export default function BerandaPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-2 relative z-10">
             
             {/* LEFT: Heading & Search */}
-            <div className="lg:col-span-4 flex flex-col items-start text-left">
+            <div className="lg:col-span-4 flex flex-col items-start text-left pb-6 md:pb-8">
               <h2 className="font-editorial text-4xl md:text-6xl font-bold text-[#3D2B1F] leading-tight mb-4">
                 Baru & <br />Populer
               </h2>
@@ -447,7 +447,7 @@ export default function BerandaPage() {
             </div>
 
             {/* RIGHT: Cards (Author of Week & Audio Player) */}
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-6 justify-center">
+            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-6 justify-center pb-6 md:pb-8">
               
               {/* Card 1: Author of the Week */}
               <div className="flex items-center gap-3">
@@ -502,14 +502,14 @@ export default function BerandaPage() {
           {/* REALISTIC 3D CREAM WALL SHELF BOARD */}
           <div className="relative w-full -mt-2 md:-mt-3 mb-8 z-20">
             {/* Shelf Board Top & Front Lip */}
-            <div className="w-full h-5 bg-[#E8E2D3] border-t border-white/80 border-b border-[#3D2B1F]/20 rounded-sm relative shadow-[0_14px_28px_-4px_rgba(45,25,10,0.28),inset_0_2px_4px_rgba(255,255,255,0.9),inset_0_-2px_4px_rgba(0,0,0,0.12)]">
+            <div className="w-full h-5 bg-[#E8E2D3] border-t border-white/80 border-b border-[#3D2B1F]/15 rounded-sm relative shadow-[0_8px_20px_-3px_rgba(61,43,31,0.12),inset_0_1.5px_3px_rgba(255,255,255,0.9)]">
               {/* Top Surface Highlight */}
               <div className="absolute inset-x-0 top-0 h-1.5 bg-[#F6F2E7] opacity-90 rounded-t-sm"></div>
-              {/* Bottom Lip Shadow Accent */}
-              <div className="absolute inset-x-0 bottom-0 h-1 bg-[#D8CEB7]/80"></div>
+              {/* Bottom Lip Accent */}
+              <div className="absolute inset-x-0 bottom-0 h-1 bg-[#D8CEB7]/60"></div>
             </div>
-            {/* Soft Linear Gradient Wall Shadow extending down onto lower section */}
-            <div className="w-full h-10 bg-gradient-to-b from-[#3D2B1F]/20 via-[#3D2B1F]/06 to-transparent pointer-events-none -mt-0.5"></div>
+            {/* Smooth Soft Linear Gradient Wall Shadow */}
+            <div className="w-full h-12 bg-gradient-to-b from-[#3D2B1F]/10 via-[#3D2B1F]/03 to-transparent blur-[2px] opacity-75 pointer-events-none -mt-0.5"></div>
           </div>
 
           {/* BOTTOM ROW: RECENT BESTSELLERS */}
