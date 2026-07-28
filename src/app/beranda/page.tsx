@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Play, ArrowRight, Mail } from "lucide-react";
+import { Play, ArrowRight, Mail, Search, Star, Bookmark, ShoppingBag, Headphones } from "lucide-react";
 
 export default function BerandaPage() {
   useEffect(() => {
@@ -358,53 +358,276 @@ export default function BerandaPage() {
         </div>
       </section>
 
-      {/* 2. Buku yang Populer */}
-      <section className="w-full max-w-6xl mx-auto px-6 py-24 bg-[#3D2B1F]/[0.02] rounded-3xl mb-24">
-        <div className="text-center mb-16">
-          <h2 className="font-editorial text-4xl md:text-5xl font-bold mb-4 text-[#3D2B1F]">Buku Populer</h2>
-          <p className="font-sans text-[#3D2B1F]/70 text-lg">Karya-karya yang paling banyak dibaca dan diperbincangkan minggu ini.</p>
-        </div>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {/* Book Card 1 */}
-          <div className="group cursor-pointer flex flex-col items-center">
-            <div className="w-full aspect-[2/3] bg-book-slate rounded-r-lg rounded-l-sm shadow-[8px_8px_16px_rgba(45,25,10,0.15),inset_4px_0_12px_rgba(255,255,255,0.15)] relative mb-6 transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-[12px_12px_24px_rgba(45,25,10,0.2)] flex items-center justify-center p-6 text-center">
-              <div className="absolute left-3 top-0 bottom-0 w-px bg-white/20"></div>
-              <h3 className="font-editorial text-[#FAF8F3] text-2xl font-bold leading-tight">Gema<br/>Waktu</h3>
+      {/* 2. Buku yang Populer (Didesain ulang persis seperti Referensi UI) */}
+      <section className="w-full max-w-6xl mx-auto px-4 md:px-8 py-12 mb-24">
+        {/* Main Card Wrapper with Warm Beige Background */}
+        <div className="w-full bg-[#FAF7F0] border border-[#3D2B1F]/10 rounded-3xl p-6 md:p-10 shadow-sm relative overflow-hidden">
+          
+          {/* TOP BAR / NAVIGATION INSIDE CARD */}
+          <div className="w-full flex flex-wrap justify-between items-center gap-4 mb-12">
+            {/* Logo / Tag inside card */}
+            <div className="font-editorial text-2xl font-bold tracking-wider text-[#3D2B1F]">
+              BooKS
             </div>
-            <h4 className="font-editorial font-bold text-xl text-[#3D2B1F] mb-1">Gema Waktu</h4>
-            <span className="font-sans text-sm text-[#3D2B1F]/60">Fiksi Ilmiah</span>
+
+            {/* Middle Pills */}
+            <div className="flex items-center gap-3 bg-[#EFE9DC]/60 p-1.5 rounded-full border border-[#3D2B1F]/5">
+              <button className="px-5 py-2 rounded-full bg-[#DDA15E] text-[#FAF8F3] font-editorial text-sm font-medium shadow-sm flex items-center gap-2">
+                <Bookmark className="w-4 h-4" />
+                Buku
+              </button>
+              <button className="px-5 py-2 rounded-full text-[#3D2B1F]/70 hover:text-[#3D2B1F] font-sans text-sm font-medium transition-colors flex items-center gap-2">
+                <Headphones className="w-4 h-4" />
+                AudioBook
+              </button>
+            </div>
+
+            {/* Right Icons */}
+            <div className="flex items-center gap-4 text-[#3D2B1F]/70">
+              <button className="p-2 hover:text-[#3D2B1F] transition-colors"><Bookmark className="w-5 h-5" /></button>
+              <button className="p-2 hover:text-[#3D2B1F] transition-colors"><ShoppingBag className="w-5 h-5" /></button>
+              <div className="w-9 h-9 rounded-full bg-book-terracotta/30 border border-[#3D2B1F]/20 flex items-center justify-center font-editorial font-bold text-sm text-[#3D2B1F]">
+                LX
+              </div>
+            </div>
           </div>
 
-          {/* Book Card 2 */}
-          <div className="group cursor-pointer flex flex-col items-center">
-            <div className="w-full aspect-[2/3] bg-book-terracotta rounded-r-lg rounded-l-sm shadow-[8px_8px_16px_rgba(45,25,10,0.15),inset_4px_0_12px_rgba(255,255,255,0.15)] relative mb-6 transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-[12px_12px_24px_rgba(45,25,10,0.2)] flex items-center justify-center p-6 text-center">
-              <div className="absolute left-3 top-0 bottom-0 w-px bg-white/20"></div>
-              <h3 className="font-editorial text-[#FAF8F3] text-2xl font-bold leading-tight">Jingga di<br/>Ujung Senja</h3>
+          {/* TOP HERO SHOWCASE (NEW & TRENDING) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-12 relative z-10">
+            
+            {/* LEFT: Heading & Search */}
+            <div className="lg:col-span-4 flex flex-col items-start text-left">
+              <h2 className="font-editorial text-4xl md:text-6xl font-bold text-[#3D2B1F] leading-tight mb-4">
+                Baru & <br />Populer
+              </h2>
+              <p className="font-sans text-[#3D2B1F]/70 text-base mb-8">
+                Jelajahi dunia baru karya penulis terkemuka dari seluruh penjuru negeri.
+              </p>
+              
+              {/* Search Bar */}
+              <div className="w-full relative max-w-sm">
+                <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-[#3D2B1F]/40" />
+                <input 
+                  type="text" 
+                  placeholder="Judul, penulis, atau topik..."
+                  className="w-full bg-[#FAF8F3] border border-[#3D2B1F]/15 rounded-full py-3 pl-11 pr-4 text-sm font-sans text-[#3D2B1F] placeholder:text-[#3D2B1F]/40 outline-none shadow-sm focus:border-[#DDA15E]"
+                />
+              </div>
             </div>
-            <h4 className="font-editorial font-bold text-xl text-[#3D2B1F] mb-1">Jingga di Ujung Senja</h4>
-            <span className="font-sans text-sm text-[#3D2B1F]/60">Romansa</span>
+
+            {/* CENTER: Big 3D Featured Book */}
+            <div className="lg:col-span-4 flex justify-center py-6">
+              <div className="relative group cursor-pointer perspective-1000">
+                {/* 3D Book Cover standing upright */}
+                <div className="w-56 h-80 rounded-r-md rounded-l-sm bg-gradient-to-br from-[#2F4B54] via-[#417D84] to-[#2F4B54] p-5 flex flex-col justify-between text-[#FAF8F3] relative shadow-[15px_20px_35px_rgba(45,25,10,0.3)] transition-transform duration-500 group-hover:rotate-y-[-6deg] group-hover:scale-105">
+                  {/* Badge */}
+                  <span className="text-[10px] font-sans tracking-widest uppercase opacity-80 border-b border-white/20 pb-1">
+                    #1 New York Times Bestseller
+                  </span>
+                  
+                  {/* Cover Title */}
+                  <div className="my-auto">
+                    <h3 className="font-editorial text-3xl font-bold leading-tight drop-shadow-md">
+                      The Last<br />Thing He<br />Told Me
+                    </h3>
+                    <div className="w-10 h-10 rounded-full bg-[#DDA15E] my-3 flex items-center justify-center text-[10px] font-bold text-[#3D2B1F] shadow-sm">
+                      REESE'S
+                    </div>
+                  </div>
+
+                  {/* Author */}
+                  <p className="font-editorial italic text-lg font-medium">Laura Dave</p>
+
+                  {/* Spine Highlight 3D effect */}
+                  <div className="absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-black/30 via-transparent to-white/10 rounded-l-sm"></div>
+                  {/* Right side 3D page thickness */}
+                  <div className="absolute right-0 top-1 bottom-1 w-3 bg-[#EFE4D1] translate-x-3 rotate-y-90 origin-left border-l border-black/10"></div>
+                </div>
+                {/* Soft floor shadow */}
+                <div className="w-48 h-4 bg-black/20 rounded-full blur-md mx-auto mt-4"></div>
+              </div>
+            </div>
+
+            {/* RIGHT: Cards (Author of Week & Audio Player) */}
+            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-6 justify-center">
+              
+              {/* Card 1: Author of the Week */}
+              <div className="flex items-center gap-3">
+                <span className="font-sans text-[11px] font-semibold tracking-widest text-[#3D2B1F]/50 uppercase [writing-mode:vertical-lr] rotate-180">
+                  Penulis Minggu Ini
+                </span>
+                <div className="flex-1 bg-[#FAF8F3] border border-[#3D2B1F]/10 rounded-2xl p-4 shadow-sm flex flex-col items-center text-center">
+                  <div className="w-full bg-[#DDA15E]/30 rounded-xl p-3 mb-3 flex flex-col items-center">
+                    <h4 className="font-editorial font-bold text-base text-[#3D2B1F]">Koleksi Tere Liye</h4>
+                    <span className="font-sans text-xs text-[#3D2B1F]/60">42 Buku Pilihan</span>
+                  </div>
+                  <div className="w-16 h-16 rounded-full bg-book-terracotta/20 border-2 border-[#FAF8F3] overflow-hidden shadow-sm flex items-center justify-center text-xl font-editorial font-bold text-[#3D2B1F]">
+                    TL
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: Last listened / Audiobook */}
+              <div className="flex items-center gap-3">
+                <span className="font-sans text-[11px] font-semibold tracking-widest text-[#3D2B1F]/50 uppercase [writing-mode:vertical-lr] rotate-180">
+                  Terakhir Didengar
+                </span>
+                <div className="flex-1 bg-[#FAF8F3] border border-[#3D2B1F]/10 rounded-2xl p-4 shadow-sm flex flex-col items-center text-center">
+                  <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] leading-snug mb-0.5">
+                    False Witness: A Novel
+                  </h4>
+                  <span className="font-sans text-xs text-[#3D2B1F]/60 mb-3">Karin Slaughter</span>
+                  
+                  {/* Rotating CD Player Widget */}
+                  <div className="relative w-14 h-14 mb-3">
+                    <div className="w-full h-full rounded-full bg-gradient-to-tr from-[#3D2B1F] to-[#73533E] animate-spin-slow flex items-center justify-center p-1 shadow-md">
+                      <div className="w-5 h-5 rounded-full bg-[#FAF8F3] border-2 border-[#3D2B1F]"></div>
+                    </div>
+                  </div>
+
+                  {/* Progress & Controls */}
+                  <div className="w-full flex items-center justify-between gap-2 px-2">
+                    <span className="text-[10px] font-sans text-[#3D2B1F]/50">12:40</span>
+                    <div className="flex-1 h-1 bg-[#3D2B1F]/10 rounded-full overflow-hidden">
+                      <div className="w-2/3 h-full bg-[#DDA15E]"></div>
+                    </div>
+                    <button className="w-7 h-7 rounded-full bg-[#3D2B1F] text-[#FAF8F3] flex items-center justify-center shadow-sm hover:scale-105 transition-transform">
+                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
 
-          {/* Book Card 3 */}
-          <div className="group cursor-pointer flex flex-col items-center">
-            <div className="w-full aspect-[2/3] bg-book-ochre rounded-r-lg rounded-l-sm shadow-[8px_8px_16px_rgba(45,25,10,0.15),inset_4px_0_12px_rgba(255,255,255,0.15)] relative mb-6 transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-[12px_12px_24px_rgba(45,25,10,0.2)] flex items-center justify-center p-6 text-center">
-              <div className="absolute left-3 top-0 bottom-0 w-px bg-white/20"></div>
-              <h3 className="font-editorial text-[#FAF8F3] text-2xl font-bold leading-tight">Filosofi<br/>Kopi</h3>
+          {/* SHELF BOARD SEPARATOR */}
+          <div className="w-full h-2 bg-gradient-to-r from-[#DDA15E]/20 via-[#3D2B1F]/15 to-[#DDA15E]/20 rounded-full my-8 shadow-inner"></div>
+
+          {/* BOTTOM ROW: RECENT BESTSELLERS */}
+          <div className="w-full flex flex-col md:flex-row items-start md:items-center gap-6 pt-4">
+            
+            {/* Vertical Label */}
+            <div className="font-editorial font-bold text-xs tracking-widest text-[#3D2B1F]/60 uppercase [writing-mode:vertical-lr] md:rotate-180 shrink-0 hidden md:block">
+              Buku Terpopuler
             </div>
-            <h4 className="font-editorial font-bold text-xl text-[#3D2B1F] mb-1">Filosofi Kopi</h4>
-            <span className="font-sans text-sm text-[#3D2B1F]/60">Esai & Filsafat</span>
+            
+            {/* Title for Mobile */}
+            <h3 className="font-editorial font-bold text-xl text-[#3D2B1F] md:hidden">
+              Buku Terpopuler
+            </h3>
+
+            {/* 4 Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+              
+              {/* Card 1 */}
+              <div className="bg-[#FAF8F3]/60 hover:bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/5 hover:border-[#3D2B1F]/15 transition-all duration-300 flex items-center gap-4 group cursor-pointer shadow-none hover:shadow-md">
+                {/* 3D Book Cover Mini */}
+                <div className="w-16 h-24 rounded-r bg-[#C55636] shrink-0 shadow-[4px_6px_12px_rgba(0,0,0,0.18)] group-hover:-translate-y-1 transition-transform p-2 flex flex-col justify-between text-[#FAF8F3] relative overflow-hidden">
+                  <span className="text-[7px] font-bold uppercase tracking-wider">Bestseller</span>
+                  <p className="font-editorial font-bold text-xs leading-tight">LEFT TO FEAR</p>
+                </div>
+                {/* Book Details */}
+                <div className="flex flex-col items-start text-left">
+                  <div className="flex items-center gap-1 text-[#DDA15E] mb-1">
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 text-[#3D2B1F]/20" />
+                  </div>
+                  <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] leading-tight mb-0.5 line-clamp-1">
+                    False Witness
+                  </h4>
+                  <span className="font-sans text-xs text-[#3D2B1F]/60 mb-2">Karin Slaughter</span>
+                  <button className="px-3 py-1 rounded-full border border-[#DDA15E]/60 text-[11px] font-medium text-[#3D2B1F] hover:bg-[#DDA15E] hover:text-[#FAF8F3] transition-colors">
+                    Baca Sekarang
+                  </button>
+                </div>
+              </div>
+
+              {/* Card 2 */}
+              <div className="bg-[#FAF8F3]/60 hover:bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/5 hover:border-[#3D2B1F]/15 transition-all duration-300 flex items-center gap-4 group cursor-pointer shadow-none hover:shadow-md">
+                {/* 3D Book Cover Mini */}
+                <div className="w-16 h-24 rounded-r bg-[#417D84] shrink-0 shadow-[4px_6px_12px_rgba(0,0,0,0.18)] group-hover:-translate-y-1 transition-transform p-2 flex flex-col justify-between text-[#FAF8F3] relative overflow-hidden">
+                  <span className="text-[7px] font-bold uppercase tracking-wider">Popular</span>
+                  <p className="font-editorial font-bold text-xs leading-tight">MALIBU RISING</p>
+                </div>
+                {/* Book Details */}
+                <div className="flex flex-col items-start text-left">
+                  <div className="flex items-center gap-1 text-[#DDA15E] mb-1">
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                  </div>
+                  <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] leading-tight mb-0.5 line-clamp-1">
+                    Malibu Rising
+                  </h4>
+                  <span className="font-sans text-xs text-[#3D2B1F]/60 mb-2">Taylor Jenkins</span>
+                  <button className="px-3 py-1 rounded-full border border-[#DDA15E]/60 text-[11px] font-medium text-[#3D2B1F] hover:bg-[#DDA15E] hover:text-[#FAF8F3] transition-colors">
+                    Baca Sekarang
+                  </button>
+                </div>
+              </div>
+
+              {/* Card 3 */}
+              <div className="bg-[#FAF8F3]/60 hover:bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/5 hover:border-[#3D2B1F]/15 transition-all duration-300 flex items-center gap-4 group cursor-pointer shadow-none hover:shadow-md">
+                {/* 3D Book Cover Mini */}
+                <div className="w-16 h-24 rounded-r bg-[#2F4B54] shrink-0 shadow-[4px_6px_12px_rgba(0,0,0,0.18)] group-hover:-translate-y-1 transition-transform p-2 flex flex-col justify-between text-[#FAF8F3] relative overflow-hidden">
+                  <span className="text-[7px] font-bold uppercase tracking-wider">Top Rated</span>
+                  <p className="font-editorial font-bold text-xs leading-tight">BLACK ICE</p>
+                </div>
+                {/* Book Details */}
+                <div className="flex flex-col items-start text-left">
+                  <div className="flex items-center gap-1 text-[#DDA15E] mb-1">
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 text-[#3D2B1F]/20" />
+                    <Star className="w-3 h-3 text-[#3D2B1F]/20" />
+                  </div>
+                  <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] leading-tight mb-0.5 line-clamp-1">
+                    Black Ice
+                  </h4>
+                  <span className="font-sans text-xs text-[#3D2B1F]/60 mb-2">Brad Thor</span>
+                  <button className="px-3 py-1 rounded-full border border-[#DDA15E]/60 text-[11px] font-medium text-[#3D2B1F] hover:bg-[#DDA15E] hover:text-[#FAF8F3] transition-colors">
+                    Baca Sekarang
+                  </button>
+                </div>
+              </div>
+
+              {/* Card 4 */}
+              <div className="bg-[#FAF8F3]/60 hover:bg-[#FAF8F3] p-3 rounded-2xl border border-[#3D2B1F]/5 hover:border-[#3D2B1F]/15 transition-all duration-300 flex items-center gap-4 group cursor-pointer shadow-none hover:shadow-md">
+                {/* 3D Book Cover Mini */}
+                <div className="w-16 h-24 rounded-r bg-[#C88D46] shrink-0 shadow-[4px_6px_12px_rgba(0,0,0,0.18)] group-hover:-translate-y-1 transition-transform p-2 flex flex-col justify-between text-[#FAF8F3] relative overflow-hidden">
+                  <span className="text-[7px] font-bold uppercase tracking-wider">New</span>
+                  <p className="font-editorial font-bold text-xs leading-tight">BLIND TIGER</p>
+                </div>
+                {/* Book Details */}
+                <div className="flex flex-col items-start text-left">
+                  <div className="flex items-center gap-1 text-[#DDA15E] mb-1">
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 text-[#3D2B1F]/20" />
+                  </div>
+                  <h4 className="font-editorial font-bold text-sm text-[#3D2B1F] leading-tight mb-0.5 line-clamp-1">
+                    Blind Tiger
+                  </h4>
+                  <span className="font-sans text-xs text-[#3D2B1F]/60 mb-2">Sandra Brown</span>
+                  <button className="px-3 py-1 rounded-full border border-[#DDA15E]/60 text-[11px] font-medium text-[#3D2B1F] hover:bg-[#DDA15E] hover:text-[#FAF8F3] transition-colors">
+                    Baca Sekarang
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
-          {/* Book Card 4 */}
-          <div className="group cursor-pointer flex flex-col items-center">
-            <div className="w-full aspect-[2/3] bg-book-teal rounded-r-lg rounded-l-sm shadow-[8px_8px_16px_rgba(45,25,10,0.15),inset_4px_0_12px_rgba(255,255,255,0.15)] relative mb-6 transition-transform duration-300 group-hover:-translate-y-2 group-hover:shadow-[12px_12px_24px_rgba(45,25,10,0.2)] flex items-center justify-center p-6 text-center">
-              <div className="absolute left-3 top-0 bottom-0 w-px bg-white/20"></div>
-              <h3 className="font-editorial text-[#FAF8F3] text-2xl font-bold leading-tight">Jejak<br/>Langkah</h3>
-            </div>
-            <h4 className="font-editorial font-bold text-xl text-[#3D2B1F] mb-1">Jejak Langkah</h4>
-            <span className="font-sans text-sm text-[#3D2B1F]/60">Koleksi Klasik</span>
-          </div>
         </div>
       </section>
 
