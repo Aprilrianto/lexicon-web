@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "./components/layout/navbar";
 
 export const metadata: Metadata = {
   title: "Lexicon Novel - Platform Membaca Buku",
@@ -13,7 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className="min-h-screen flex flex-col items-center">
+      <body className="min-h-screen bg-warm-paper flex flex-col items-center font-sans text-[#3D2B1F]">
+        <Navbar />
         {children}
       </body>
     </html>

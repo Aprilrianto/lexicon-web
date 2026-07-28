@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 
 export default function BerandaPage() {
   useEffect(() => {
@@ -41,46 +40,25 @@ export default function BerandaPage() {
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-warm-paper flex flex-col items-center justify-between font-sans text-[#3D2B1F] py-8">
-      
-      {/* Navigation Header */}
-      <header className="w-full max-w-5xl mx-auto px-6 py-8 flex justify-center items-center relative z-20">
-        <nav className="flex space-x-10 md:space-x-16 text-[#3D2B1F] font-editorial text-lg tracking-wide">
-          <Link href="/beranda" className="hover:opacity-60 transition-opacity active:scale-95 origin-center">Beranda</Link>
-          
-          <div className="relative group flex items-center">
-            <Link href="/jelajah" className="hover:opacity-60 transition-opacity flex items-center gap-1.5 active:scale-95 origin-center">
-              Jelajah
-              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.3-4.3"></path>
-              </svg>
-            </Link>
-          </div>
-          
-          <Link href="/rak%20buku" className="hover:opacity-60 transition-opacity active:scale-95 origin-center">Rak Buku</Link>
-          <Link href="/q&a" className="hover:opacity-60 transition-opacity active:scale-95 origin-center">Q&A</Link>
-          <Link href="/kontak" className="hover:opacity-60 transition-opacity active:scale-95 origin-center">Kontak</Link>
-        </nav>
-      </header>
+    <div className="w-full flex flex-col items-center justify-between pb-8">
 
       {/* Main Content Area */}
-      <main className="w-full max-w-5xl mx-auto px-4 flex flex-col items-center flex-grow mt-4 relative z-10">
+      <main className="w-full max-w-6xl mx-auto px-4 flex flex-col items-center flex-grow mt-8 md:mt-14 relative z-10">
         
         {/* Editorial Typography Header Block */}
-        <div className="text-center mb-16 md:mb-20">
-          <h1 className="font-editorial text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 text-[#3D2B1F]">
+        <div className="text-center mb-20 md:mb-24">
+          <h1 className="font-editorial text-5xl md:text-7xl font-bold tracking-tight mb-4 text-[#3D2B1F]">
             Lexicon Novel
           </h1>
-          <p className="font-editorial italic text-xl md:text-2xl text-[#3D2B1F]/80 max-w-xl mx-auto font-normal">
+          <p className="font-editorial italic text-lg md:text-xl text-[#3D2B1F]/80 max-w-xl mx-auto font-normal leading-relaxed">
             Platform membaca novel dan cerita pendek untuk mahasiswa dan umum.
           </p>
         </div>
 
-        {/* Skeuomorphic Bookshelf Container */}
-        <div className="w-full max-w-4xl shelf-container flex flex-col items-center gap-28 pb-24">
+        {/* Skeuomorphic Bookshelf Container - Expansive Row of Books */}
+        <div className="w-full max-w-6xl shelf-container flex flex-col items-center gap-24 pb-20">
           
-          {/* ================= TIER 1 (TOP SHELF) ================= */}
+          {/* ================= TIER 1 (TOP SHELF - EXPANDED MANY BOOKS) ================= */}
           <div className="w-full flex justify-center z-10">
             {/* Wrapper adapting board width to exact book row width + padding overhang */}
             <div className="relative inline-flex items-end px-5">
@@ -88,12 +66,12 @@ export default function BerandaPage() {
               {/* Wooden Shelf Board - adapts to exact width of books wrapper */}
               <div className="shelf-board"></div>
               
-              {/* Books Container with realistic drop shadow */}
+              {/* Books Container - 22 Books stretch across left to right */}
               <div className="relative flex items-end h-full z-10 pb-4 gap-px books-shadow-filter">
                 
                 {/* Book 1 with Floating Tag */}
                 <div className="book-wrapper relative flex items-end">
-                  <div className="floating-tag absolute -top-12 left-1/2 -translate-x-1/2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md">
+                  <div className="floating-tag absolute -top-12 left-1/2 -translate-x-1/2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md whitespace-nowrap">
                     Fiksi Ilmiah
                   </div>
                   <div className="book-spine w-8 h-40 bg-book-terracotta rounded-t-sm">
@@ -108,74 +86,119 @@ export default function BerandaPage() {
 
                 {/* Book 3 */}
                 <div className="book-wrapper relative flex items-end">
-                  <div className="book-spine w-7 h-38 bg-book-teal rounded-t-sm"></div>
+                  <div className="book-spine w-7 h-36 bg-book-teal rounded-t-sm"></div>
                 </div>
 
                 {/* Book 4 (Leaning Left) */}
                 <div className="book-wrapper relative flex items-end transform -rotate-12 translate-x-1 translate-y-1">
-                  <div className="book-spine w-8 h-42 bg-book-gold rounded-t-sm"></div>
+                  <div className="book-spine w-8 h-40 bg-book-gold rounded-t-sm"></div>
                 </div>
 
                 {/* Book 5 */}
                 <div className="book-wrapper relative flex items-end">
                   <div className="book-spine w-9 h-44 bg-book-slate rounded-t-sm">
-                    <div className="spine-band top-10 h-4"></div>
+                    <div className="spine-band top-9 h-3.5"></div>
                   </div>
                 </div>
 
                 {/* Book 6 */}
                 <div className="book-wrapper relative flex items-end">
-                  <div className="book-spine w-11 h-40 bg-book-ochre rounded-t-sm"></div>
+                  <div className="book-spine w-11 h-38 bg-book-ochre rounded-t-sm"></div>
                 </div>
 
                 {/* Book 7 */}
                 <div className="book-wrapper relative flex items-end">
-                  <div className="book-spine w-6 h-36 bg-book-rose rounded-t-sm"></div>
+                  <div className="book-spine w-6 h-34 bg-book-rose rounded-t-sm"></div>
                 </div>
 
-                {/* Book 8 with Floating Tag */}
+                {/* Book 8 */}
                 <div className="book-wrapper relative flex items-end">
-                  <div className="floating-tag absolute -top-14 left-1/2 -translate-x-1/2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md" style={{ animationDelay: "1.5s" }}>
+                  <div className="book-spine w-8 h-40 bg-book-cream rounded-t-sm"></div>
+                </div>
+
+                {/* Book 9 with Floating Tag */}
+                <div className="book-wrapper relative flex items-end">
+                  <div className="floating-tag absolute -top-14 left-1/2 -translate-x-1/2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md whitespace-nowrap" style={{ animationDelay: "1.2s" }}>
                     Jurnal Teknologi
                   </div>
                   <div className="book-spine w-12 h-44 bg-book-terracotta rounded-t-sm">
-                    <div className="spine-band top-8 h-2"></div>
+                    <div className="spine-band top-7 h-2.5"></div>
                   </div>
-                </div>
-
-                {/* Book 9 */}
-                <div className="book-wrapper relative flex items-end">
-                  <div className="book-spine w-9 h-38 bg-book-green rounded-t-sm"></div>
                 </div>
 
                 {/* Book 10 */}
                 <div className="book-wrapper relative flex items-end">
-                  <div className="book-spine w-7 h-42 bg-book-gold rounded-t-sm"></div>
+                  <div className="book-spine w-9 h-38 bg-book-green rounded-t-sm"></div>
                 </div>
 
                 {/* Book 11 */}
                 <div className="book-wrapper relative flex items-end">
-                  <div className="book-spine w-10 h-40 bg-book-teal rounded-t-sm"></div>
+                  <div className="book-spine w-7 h-40 bg-book-gold rounded-t-sm"></div>
                 </div>
 
-                {/* Book 12 (Leaning Right) */}
-                <div className="book-wrapper relative flex items-end transform rotate-6 -translate-x-1">
-                  <div className="book-spine w-8 h-36 bg-book-brown rounded-t-sm"></div>
-                </div>
-
-                {/* Book 13 with Floating Tag */}
+                {/* Book 12 */}
                 <div className="book-wrapper relative flex items-end">
-                  <div className="floating-tag absolute -top-12 right-0 translate-x-2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md" style={{ animationDelay: "3s" }}>
-                    Koleksi Puisi
-                  </div>
-                  <div className="book-spine w-12 h-44 bg-book-gold rounded-t-sm">
-                    <div className="spine-band top-12 h-3"></div>
-                  </div>
+                  <div className="book-spine w-10 h-38 bg-book-teal rounded-t-sm"></div>
+                </div>
+
+                {/* Book 13 (Leaning Right) */}
+                <div className="book-wrapper relative flex items-end transform rotate-6 -translate-x-1">
+                  <div className="book-spine w-8 h-34 bg-book-brown rounded-t-sm"></div>
                 </div>
 
                 {/* Book 14 */}
                 <div className="book-wrapper relative flex items-end">
-                  <div className="book-spine w-9 h-40 bg-book-slate rounded-t-sm"></div>
+                  <div className="book-spine w-9 h-42 bg-book-rust rounded-t-sm"></div>
+                </div>
+
+                {/* Book 15 with Floating Tag */}
+                <div className="book-wrapper relative flex items-end">
+                  <div className="floating-tag absolute -top-12 left-1/2 -translate-x-1/2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md whitespace-nowrap" style={{ animationDelay: "2.4s" }}>
+                    Koleksi Puisi
+                  </div>
+                  <div className="book-spine w-12 h-44 bg-book-gold rounded-t-sm">
+                    <div className="spine-band top-10 h-3"></div>
+                  </div>
+                </div>
+
+                {/* Book 16 */}
+                <div className="book-wrapper relative flex items-end">
+                  <div className="book-spine w-9 h-38 bg-book-slate rounded-t-sm"></div>
+                </div>
+
+                {/* Book 17 */}
+                <div className="book-wrapper relative flex items-end">
+                  <div className="book-spine w-8 h-42 bg-book-cream rounded-t-sm"></div>
+                </div>
+
+                {/* Book 18 */}
+                <div className="book-wrapper relative flex items-end">
+                  <div className="book-spine w-10 h-38 bg-book-terracotta rounded-t-sm"></div>
+                </div>
+
+                {/* Book 19 (Leaning Left) */}
+                <div className="book-wrapper relative flex items-end transform -rotate-10 translate-x-1 translate-y-1">
+                  <div className="book-spine w-7 h-40 bg-book-teal rounded-t-sm"></div>
+                </div>
+
+                {/* Book 20 with Floating Tag */}
+                <div className="book-wrapper relative flex items-end">
+                  <div className="floating-tag absolute -top-14 right-0 translate-x-2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md whitespace-nowrap" style={{ animationDelay: "3.2s" }}>
+                    Esai & Filsafat
+                  </div>
+                  <div className="book-spine w-11 h-44 bg-book-ochre rounded-t-sm">
+                    <div className="spine-band top-8 h-3"></div>
+                  </div>
+                </div>
+
+                {/* Book 21 */}
+                <div className="book-wrapper relative flex items-end">
+                  <div className="book-spine w-8 h-38 bg-book-green rounded-t-sm"></div>
+                </div>
+
+                {/* Book 22 */}
+                <div className="book-wrapper relative flex items-end">
+                  <div className="book-spine w-9 h-42 bg-book-rose rounded-t-sm"></div>
                 </div>
 
               </div>
@@ -183,18 +206,18 @@ export default function BerandaPage() {
             </div>
           </div>
 
-          {/* ================= TIER 2 (BOTTOM SHELF - DISTINCT COMPOSITION) ================= */}
+          {/* ================= TIER 2 (BOTTOM SHELF - EXPANDED RICH SECTIONS) ================= */}
           <div className="w-full flex justify-center z-10">
             {/* Wrapper adapting board width to exact book row width + padding overhang */}
             <div className="relative inline-flex items-end px-5">
               
-              {/* Wooden Shelf Board - adapts to exact width of books wrapper */}
+              {/* Wooden Shelf Board */}
               <div className="shelf-board"></div>
               
-              {/* Books Container with distinct grouped layout & realistic drop shadow */}
-              <div className="relative flex items-end h-full z-10 pb-4 gap-6 books-shadow-filter">
+              {/* Books Container with 5 distinct sections stretching wide */}
+              <div className="relative flex items-end h-full z-10 pb-4 gap-5 books-shadow-filter">
                 
-                {/* SECTION A: Left Cluster (Upright books + 1 heavily leaning book) */}
+                {/* SECTION 1: Far Left (Upright cluster + 1 leaning book) */}
                 <div className="flex items-end gap-px">
                   <div className="book-wrapper relative flex items-end">
                     <div className="book-spine w-11 h-44 bg-book-slate rounded-t-sm">
@@ -202,18 +225,21 @@ export default function BerandaPage() {
                     </div>
                   </div>
                   <div className="book-wrapper relative flex items-end">
-                    <div className="book-spine w-8 h-40 bg-book-ochre rounded-t-sm"></div>
+                    <div className="book-spine w-8 h-38 bg-book-ochre rounded-t-sm"></div>
                   </div>
                   <div className="book-wrapper relative flex items-end">
-                    <div className="book-spine w-9 h-42 bg-book-teal rounded-t-sm"></div>
+                    <div className="book-spine w-9 h-40 bg-book-teal rounded-t-sm"></div>
+                  </div>
+                  <div className="book-wrapper relative flex items-end">
+                    <div className="book-spine w-10 h-42 bg-book-gold rounded-t-sm"></div>
                   </div>
                   {/* Leaning Book */}
                   <div className="book-wrapper relative flex items-end transform -rotate-15 translate-x-1.5 translate-y-1">
-                    <div className="book-spine w-8 h-38 bg-book-rose rounded-t-sm"></div>
+                    <div className="book-spine w-8 h-36 bg-book-rose rounded-t-sm"></div>
                   </div>
                 </div>
 
-                {/* SECTION B: Center-Left (Stack of Horizontal books with diagonal book on top) */}
+                {/* SECTION 2: Center-Left (Stack of Horizontal books with diagonal book on top) */}
                 <div className="relative flex flex-col justify-end items-center pb-0">
                   {/* Diagonal Book resting on top of stack */}
                   <div className="book-wrapper relative z-20 transform -rotate-6 translate-y-1">
@@ -229,14 +255,14 @@ export default function BerandaPage() {
                   </div>
                 </div>
 
-                {/* SECTION C: Center-Right (Mixed height cluster + Floating Tag) */}
+                {/* SECTION 3: Center (Mixed height cluster + Floating Tag) */}
                 <div className="flex items-end gap-px">
                   <div className="book-wrapper relative flex items-end">
-                    <div className="book-spine w-7 h-36 bg-book-green rounded-t-sm"></div>
+                    <div className="book-spine w-7 h-34 bg-book-green rounded-t-sm"></div>
                   </div>
                   <div className="book-wrapper relative flex items-end">
                     {/* Floating Tag */}
-                    <div className="floating-tag absolute -top-12 left-1/2 -translate-x-1/2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md" style={{ animationDelay: "1s" }}>
+                    <div className="floating-tag absolute -top-12 left-1/2 -translate-x-1/2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md whitespace-nowrap" style={{ animationDelay: "1s" }}>
                       Cerita Pendek
                     </div>
                     <div className="book-spine w-11 h-44 bg-book-terracotta rounded-t-sm">
@@ -244,29 +270,57 @@ export default function BerandaPage() {
                     </div>
                   </div>
                   <div className="book-wrapper relative flex items-end">
-                    <div className="book-spine w-8 h-40 bg-book-gold rounded-t-sm"></div>
+                    <div className="book-spine w-8 h-38 bg-book-gold rounded-t-sm"></div>
                   </div>
                   <div className="book-wrapper relative flex items-end">
-                    <div className="book-spine w-10 h-38 bg-book-slate rounded-t-sm"></div>
+                    <div className="book-spine w-10 h-36 bg-book-slate rounded-t-sm"></div>
+                  </div>
+                  <div className="book-wrapper relative flex items-end">
+                    <div className="book-spine w-9 h-42 bg-book-cream rounded-t-sm"></div>
                   </div>
                 </div>
 
-                {/* SECTION D: Far Right (Thick volumes + Leaning + Floating Tag) */}
+                {/* SECTION 4: Center-Right (Horizontal Stack + Leaning Books + Floating Tag) */}
+                <div className="flex items-end gap-3">
+                  {/* Stack */}
+                  <div className="book-wrapper relative flex flex-col gap-px mb-1">
+                    <div className="book-spine w-28 h-6 bg-book-rose rounded-r-sm"></div>
+                    <div className="book-spine w-28 h-7 bg-book-ochre rounded-r-sm"></div>
+                    <div className="book-spine w-28 h-7 bg-book-slate rounded-r-sm"></div>
+                  </div>
+                  {/* Leaning books resting on stack */}
+                  <div className="flex items-end gap-px">
+                    <div className="book-wrapper relative flex items-end">
+                      <div className="floating-tag absolute -top-12 left-1/2 -translate-x-1/2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md whitespace-nowrap" style={{ animationDelay: "2s" }}>
+                        Koleksi Klasik
+                      </div>
+                      <div className="book-spine w-8 h-40 bg-book-teal rounded-t-sm"></div>
+                    </div>
+                    <div className="book-wrapper relative flex items-end transform rotate-10 -translate-x-1">
+                      <div className="book-spine w-9 h-38 bg-book-gold rounded-t-sm"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* SECTION 5: Far Right (Thick volumes + Leaning + Floating Tag) */}
                 <div className="flex items-end gap-px">
                   <div className="book-wrapper relative flex items-end">
-                    <div className="book-spine w-12 h-46 bg-book-ochre rounded-t-sm">
-                      <div className="spine-band top-10 h-4"></div>
+                    <div className="book-spine w-12 h-44 bg-book-ochre rounded-t-sm">
+                      <div className="spine-band top-9 h-3.5"></div>
                     </div>
                   </div>
                   <div className="book-wrapper relative flex items-end transform rotate-12 -translate-x-1 translate-y-1">
                     {/* Floating Tag */}
-                    <div className="floating-tag absolute -top-12 right-0 translate-x-2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md" style={{ animationDelay: "2.5s" }}>
+                    <div className="floating-tag absolute -top-12 right-0 translate-x-2 bg-[#FAF8F3] px-4 py-1.5 rounded-full text-xs font-editorial tracking-wide z-30 pointer-events-none animate-float shadow-md whitespace-nowrap" style={{ animationDelay: "3s" }}>
                       Novel Romansa
                     </div>
-                    <div className="book-spine w-9 h-42 bg-book-teal rounded-t-sm"></div>
+                    <div className="book-spine w-9 h-40 bg-book-teal rounded-t-sm"></div>
                   </div>
                   <div className="book-wrapper relative flex items-end">
-                    <div className="book-spine w-8 h-40 bg-book-rust rounded-t-sm"></div>
+                    <div className="book-spine w-8 h-38 bg-book-rust rounded-t-sm"></div>
+                  </div>
+                  <div className="book-wrapper relative flex items-end">
+                    <div className="book-spine w-10 h-42 bg-book-brown rounded-t-sm"></div>
                   </div>
                 </div>
 
