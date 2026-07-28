@@ -377,7 +377,7 @@ export default function BerandaPage() {
             <div className="absolute inset-0 border-4 border-[#FAF8F3]/30 rounded-2xl pointer-events-none"></div>
           </div>
           <div className="w-full md:w-7/12 flex flex-col items-start text-left">
-            <h2 className="font-editorial text-4xl md:text-5xl font-bold mb-6 text-[#3D2B1F]">Di Balik Halaman</h2>
+            <h2 className="font-editorial text-4xl font-bold mb-6 text-[#3D2B1F]">Di Balik Halaman</h2>
             <p className="font-sans text-[#3D2B1F]/80 text-lg leading-relaxed mb-6">
               Lexicon Novel bermula dari sebuah kecintaan mendalam terhadap susunan kata dan narasi. Kami percaya bahwa setiap cerita, baik fiksi ilmiah yang membawa kita ke galaksi lain, maupun romansa yang menghangatkan hati, memiliki kekuatan untuk mengubah sudut pandang.
             </p>
@@ -431,7 +431,7 @@ export default function BerandaPage() {
             
             {/* LEFT: Heading & Search */}
             <div className="lg:col-span-4 flex flex-col items-start text-left pb-6 md:pb-8">
-              <h2 className="font-editorial text-4xl md:text-6xl font-bold text-[#3D2B1F] leading-tight mb-4">
+              <h2 className="font-editorial text-4xl font-bold text-[#3D2B1F] leading-tight mb-4">
                 Baru & <br />Populer
               </h2>
               <p className="font-sans text-[#3D2B1F]/70 text-base mb-8">
@@ -692,7 +692,7 @@ export default function BerandaPage() {
       {/* 3.5 Peta Perjalanan Membaca (Animated Roadmap Map) */}
       <section className="w-full max-w-6xl mx-auto px-6 mb-24 text-center">
         <div className="mb-4">
-          <h2 className="font-editorial text-4xl md:text-5xl font-bold mb-4 text-[#3D2B1F]">
+          <h2 className="font-editorial text-4xl font-bold mb-4 text-[#3D2B1F]">
             Peta Perjalanan Membaca
           </h2>
           <p className="font-sans text-[#3D2B1F]/70 text-lg max-w-xl mx-auto">

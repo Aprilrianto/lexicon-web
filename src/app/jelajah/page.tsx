@@ -74,7 +74,7 @@ export default function JelajahPage() {
           <Compass className="w-3.5 h-3.5 text-[#417D84]" />
           Katalog & Eksplorasi Buku
         </span>
-        <h1 className="font-editorial text-4xl md:text-6xl font-bold text-[#3D2B1F] tracking-tight mb-2">
+        <h1 className="font-editorial text-[48px] font-bold text-[#3D2B1F] tracking-tight mb-2">
           Jelajah Koleksi
         </h1>
         <p className="font-sans text-sm md:text-base text-[#3D2B1F]/70 max-w-xl mx-auto leading-relaxed">

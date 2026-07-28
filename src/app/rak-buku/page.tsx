@@ -47,7 +47,7 @@ export default function RakBukuPage() {
           <BookmarkCheck className="w-3.5 h-3.5 text-[#DDA15E]" />
           Koleksi & Perpustakaan Pribadi Saya
         </span>
-        <h1 className="font-editorial text-4xl md:text-5xl font-bold text-[#3D2B1F] tracking-tight mb-2">
+        <h1 className="font-editorial text-[48px] font-bold text-[#3D2B1F] tracking-tight mb-2">
           Rak Buku Digital
         </h1>
         <p className="font-sans text-sm text-[#3D2B1F]/70 max-w-xl mx-auto leading-relaxed">

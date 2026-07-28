@@ -26,6 +26,12 @@ html, body, button, input, select, textarea, h1, h2, h3, h4, h5, h6, p, span, a,
   font-family: 'Merriweather', Georgia, serif !important;
 }
 
+/* Standardized Section Headings (48px) except hero section */
+h2, .section-title, .page-title {
+  font-size: 48px !important; /* 48px */
+  line-height: 1.25 !important;
+}
+
 .font-editorial, .font-sans, .font-merriweather {
   font-family: 'Merriweather', Georgia, serif !important;
 }
