@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedRoadmap } from "@/components/ui/animated-roadmap";
 import TestimonialsSection from "@/components/ui/testimonials-2";
 import Book from "@/components/smoothui/components/book";
+import { StickyVideoSection } from "@/components/ui/sticky-video-section";
+import { QASection } from "@/components/ui/qa-section";
 
 const milestonesData = [
   {
@@ -751,21 +753,8 @@ export default function BerandaPage() {
         </div>
       </section>
 
-      {/* 3. Video Pengenalan */}
-      <section className="w-full max-w-5xl mx-auto px-6 mb-24">
-        <div className="w-full aspect-video rounded-3xl bg-[#2F4B54] relative overflow-hidden flex items-center justify-center shadow-2xl group cursor-pointer">
-          {/* Fake Video Thumbnail / Background effect */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#3D2B1F]/80 to-transparent"></div>
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise-lines.png')] opacity-10 mix-blend-overlay"></div>
-          
-          <div className="relative z-10 flex flex-col items-center">
-            <div className="w-20 h-20 bg-[#FAF8F3]/10 backdrop-blur-md rounded-full flex items-center justify-center border border-[#FAF8F3]/20 text-[#FAF8F3] group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <Play className="w-8 h-8 ml-1" fill="currentColor" />
-            </div>
-            <h3 className="font-editorial text-2xl text-[#FAF8F3] mt-6 font-medium tracking-wide">Tonton Pengalaman Membaca</h3>
-          </div>
-        </div>
-      </section>
+      {/* 3. Section Video Latar Belakang Sticky (Setelah Baru & Populer) */}
+      <StickyVideoSection />
 
       {/* 3.5 Peta Perjalanan Membaca (Animated Roadmap Map) */}
       <section className="w-full max-w-6xl mx-auto px-6 mb-24 text-center">
@@ -784,6 +773,9 @@ export default function BerandaPage() {
           aria-label="Peta animasi alur membaca dan menulis di platform Lexicon Novel"
         />
       </section>
+
+      {/* 3.7 Section Q&A (Floating Cards Reference UI) */}
+      <QASection />
 
       {/* 3.8 Seksi Ulasan Pembaca (Testimonials Section - 3 Orang) */}
       <section className="w-full mb-20">

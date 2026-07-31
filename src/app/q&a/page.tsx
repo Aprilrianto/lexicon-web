@@ -1,7 +1,15 @@
+import React from "react";
+import { QASection } from "@/components/ui/qa-section";
+
+export const metadata = {
+  title: "Q&A & Pusat Bantuan - Lexicon Novel",
+  description: "Pertanyaan umum seputar akses buku digital, keanggotaan mahasiswa, audiobook, dan royalti penulis.",
+};
+
 export default function QAPage() {
   return (
-    <div className="p-8 text-center text-primary">
-      <h1 className="text-3xl font-editorial font-bold">Q&A</h1>
-    </div>
+    <main className="w-full flex-grow pt-0">
+      <QASection />
+    </main>
   );
 }
